@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Escalade</string>
+    <string name="login">Login</string>
+    <string name="mdp">Mot de passe</string>
+    <string name="connexion">Connexion</string>
+    <string name="Inscription">Inscription</string>
+    <string name="lblinscr">Inscription</string>
+    <string name="nameInsc">Name</string>
+    <string name="MotDePasseInsc">Mot de passe</string>
+    <string name="ConfirmationMDP">Confirmation</string>
+    <string name="Courriel">Courriel</string>
+    <string name="Tel">Telephone</string>
+    <string name="Continuer">Continuer</string>
+    <string name="Annuler">Annuler</string>
+    <string name="Nom">Nom</string>
+    <string name="Prenom">Prenom</string>
+    <string name="NoCiv">No civ</string>
+    <string name="Rue">Rue</string>
+    <string name="Ville">Ville</string>
+    <string name="CodePostal">Code postal</string>
+    <string name="btnIsncr">Terminer</string>
+</resources>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Terminer l&apos;inscription"
+        android:id="@+id/textView"
+        android:textSize="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/Nom"
+        android:ems="10"
+        android:id="@+id/txtNom"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Prenom"
+        android:ems="10"
+        android:id="@+id/txtPrenom"
+        android:layout_below="@+id/txtNom"
+        android:layout_alignLeft="@+id/txtNom"
+        android:layout_alignStart="@+id/txtNom" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberSigned"
+        android:ems="10"
+        android:id="@+id/txtNoCiv"
+        android:layout_below="@+id/txtPrenom"
+        android:layout_alignLeft="@+id/txtPrenom"
+        android:layout_alignStart="@+id/txtPrenom"
+        android:layout_marginTop="43dp"
+        android:text="@string/NoCiv" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtRue"
+        android:layout_below="@+id/txtNoCiv"
+        android:layout_alignLeft="@+id/txtNoCiv"
+        android:layout_alignStart="@+id/txtNoCiv"
+        android:layout_alignRight="@+id/txtNoCiv"
+        android:layout_alignEnd="@+id/txtNoCiv"
+        android:text="@string/Rue" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtVille"
+        android:layout_below="@+id/txtRue"
+        android:layout_alignLeft="@+id/txtRue"
+        android:layout_alignStart="@+id/txtRue"
+        android:layout_alignRight="@+id/txtRue"
+        android:layout_alignEnd="@+id/txtRue"
+        android:text="@string/Ville" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPostalAddress"
+        android:ems="10"
+        android:id="@+id/txtCodeP"
+        android:layout_below="@+id/txtVille"
+        android:layout_alignLeft="@+id/txtVille"
+        android:layout_alignStart="@+id/txtVille"
+        android:text="@string/CodePostal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnIsncr"
+        android:id="@+id/btnTerInscr"
+        android:layout_alignTop="@+id/btnAnnuler"
+        android:layout_alignLeft="@+id/txtCodeP"
+        android:layout_alignStart="@+id/txtCodeP" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Annuler"
+        android:id="@+id/btnAnnuler"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/txtCodeP"
+        android:layout_alignEnd="@+id/txtCodeP" />
+
+</RelativeLayout>
