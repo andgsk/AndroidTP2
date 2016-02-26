@@ -13,9 +13,11 @@ import deptinfo.cegepgarneau.ca.tp2.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    // Variables
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    public android.support.v4.app.FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         Toast.makeText(this, item.toString() + "Selected!", Toast.LENGTH_LONG).show();
-
         return false;
     }
 }
