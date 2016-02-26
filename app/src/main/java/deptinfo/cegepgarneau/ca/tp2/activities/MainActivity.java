@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
+import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -40,11 +41,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        // Creation du main fragment (news)
+        NouvellesFragment nouvellesFragment = new NouvellesFragment();
+
+        //Remplacement du contenu du FrameLayout par le fragment
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, nouvellesFragment);
+        fragmentTransaction.commit();
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Toast.makeText(this, item.toString() + "Selected!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, item.toString() + " selected!", Toast.LENGTH_LONG).show();
         return false;
     }
 }
