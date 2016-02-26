@@ -31,6 +31,12 @@
     <string name="block">Block</string>
     <string name="voie">Voie</string>
     <string name="txt_nav_header">Drawer</string>
+
+    <string-array name="tabs">
+        <item>Block</item>
+        <item>Voie</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
