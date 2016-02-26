@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textAlignment="center" />
+        android:textAlignment="center"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -88,7 +88,8 @@
         android:id="@+id/btnTerInscr"
         android:layout_alignTop="@+id/btnAnnuler"
         android:layout_alignLeft="@+id/txtCodeP"
-        android:layout_alignStart="@+id/txtCodeP" />
+        android:layout_alignStart="@+id/txtCodeP"
+        android:onClick="onInscriptionTerminerClick"/>
 
     <Button
         android:layout_width="wrap_content"

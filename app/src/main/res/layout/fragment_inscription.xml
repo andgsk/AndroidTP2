@@ -27,17 +27,18 @@
         android:layout_height="wrap_content"
         android:text="@string/Annuler"
         android:id="@+id/btnAnnuler"
-        android:layout_below="@+id/txtContinuer"
+        android:layout_below="@+id/btnInscContinuer"
         android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Continuer"
-        android:id="@+id/txtContinuer"
+        android:id="@+id/btnInscContinuer"
         android:layout_below="@+id/txtNumTel"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp" />
+        android:layout_marginTop="78dp"
+        android:onClick="onInscriptionContinuerClick"/>
 
     <EditText
         android:layout_width="wrap_content"
