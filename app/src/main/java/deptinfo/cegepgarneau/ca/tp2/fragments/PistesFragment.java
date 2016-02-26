@@ -12,17 +12,17 @@ import deptinfo.cegepgarneau.ca.tp2.R;
 /**
  * Created by Renaud-Charles on 22/02/2016.
  */
-public class NouvellesFragment extends Fragment {
+public class PistesFragment extends Fragment {
 
     // Constructeur
-    public NouvellesFragment(){
+    public PistesFragment(){
 
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_nouveautes,container,false);
+        View view = inflater.inflate(R.layout.fragment_piste,container,false);
         return  view;
     }
 
