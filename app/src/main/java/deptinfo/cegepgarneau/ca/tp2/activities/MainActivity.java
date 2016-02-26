@@ -1,12 +1,9 @@
 package deptinfo.cegepgarneau.ca.tp2.activities;
 
 import android.support.design.widget.NavigationView;
-<<<<<<< HEAD
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-=======
 import android.support.v4.app.Fragment;
->>>>>>> 027125340514c24854a334f76e3c9ba758b3d22c
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,17 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
-<<<<<<< HEAD
 import deptinfo.cegepgarneau.ca.tp2.adapters.TabsPagerAdapter;
 import deptinfo.cegepgarneau.ca.tp2.fragments.classBlockFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.classVoieFragment;
-=======
 import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
->>>>>>> 027125340514c24854a334f76e3c9ba758b3d22c
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -33,14 +27,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
-<<<<<<< HEAD
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-=======
     private android.support.v4.app.FragmentTransaction fragmentTransaction;
 
->>>>>>> 027125340514c24854a334f76e3c9ba758b3d22c
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
