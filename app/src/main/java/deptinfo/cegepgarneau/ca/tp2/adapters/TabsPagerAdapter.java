@@ -1,5 +1,6 @@
 package deptinfo.cegepgarneau.ca.tp2.adapters;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -7,17 +8,18 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Andrey on 2016-02-26.
- */
+
 public class TabsPagerAdapter extends FragmentPagerAdapter {
+
+    Context ctxt = null;
 
     //Permet de conserver la liste des fragments et leurs titres
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
-    public TabsPagerAdapter(FragmentManager fm) {
+    public TabsPagerAdapter(Context ctxt, FragmentManager fm) {
         super(fm);
+        this.ctxt = ctxt;
     }
 
     @Override
@@ -33,12 +35,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         return mFragmentList.size();
     }
 
-    /**
-     * Permet l'ajout dynamique d'un onglet (fragement)
-     *
-     * @param fragment Fragment représentant le contenu de l'onglet
-     * @param title    titre de l'onglet
-     */
     public void addFragment(Fragment fragment, String title) {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);

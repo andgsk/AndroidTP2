@@ -31,6 +31,11 @@
     <string name="block">Block</string>
     <string name="voie">Voie</string>
     <string name="txt_nav_header">Drawer</string>
+    <string name="titre_nouvelles">Nouvelles</string>
+    <string name="titre_profil">Profil</string>
+    <string name="titre_classements">Classements</string>
+    <string name="titre_pistes">Pistes</string>
+    <string name="titre_preferences">Preferences</string>
 
     <string-array name="tabs">
         <item>Block</item>
@@ -38,10 +43,6 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<<<<<<< HEAD
-
-=======
     <string name="txt_nouvelles">Nouvelles</string>
     <string name="membre">Jean-Dujardins</string>
->>>>>>> 027125340514c24854a334f76e3c9ba758b3d22c
 </resources>
