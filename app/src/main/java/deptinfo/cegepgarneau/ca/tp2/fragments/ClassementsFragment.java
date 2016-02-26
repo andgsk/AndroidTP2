@@ -1,26 +1,29 @@
 package deptinfo.cegepgarneau.ca.tp2.fragments;
 
-import android.app.Fragment;
-import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.annotation.Nullable;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
 
 /**
- * Created by Andrey on 2016-02-26.
+ * Created by Renaud-Charles on 22/02/2016.
  */
-public class pistesFragmentListe extends Fragment {
-    public pistesFragmentListe() {
+public class ClassementsFragment extends Fragment {
+
+    // Constructeur
+    public ClassementsFragment(){
+
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_pistes_land,container,false);
+        View view = inflater.inflate(R.layout.fragment_nouveautes,container,false);
         return  view;
     }
+
 }

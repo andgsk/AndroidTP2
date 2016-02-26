@@ -38,5 +38,10 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+<<<<<<< HEAD
 
+=======
+    <string name="txt_nouvelles">Nouvelles</string>
+    <string name="membre">Jean-Dujardins</string>
+>>>>>>> 027125340514c24854a334f76e3c9ba758b3d22c
 </resources>

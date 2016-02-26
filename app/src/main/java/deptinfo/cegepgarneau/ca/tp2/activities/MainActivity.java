@@ -1,8 +1,12 @@
 package deptinfo.cegepgarneau.ca.tp2.activities;
 
 import android.support.design.widget.NavigationView;
+<<<<<<< HEAD
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+=======
+import android.support.v4.app.Fragment;
+>>>>>>> 027125340514c24854a334f76e3c9ba758b3d22c
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,9 +15,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
+<<<<<<< HEAD
 import deptinfo.cegepgarneau.ca.tp2.adapters.TabsPagerAdapter;
 import deptinfo.cegepgarneau.ca.tp2.fragments.classBlockFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.classVoieFragment;
+=======
+import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
+>>>>>>> 027125340514c24854a334f76e3c9ba758b3d22c
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -21,9 +33,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+<<<<<<< HEAD
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+=======
+    private android.support.v4.app.FragmentTransaction fragmentTransaction;
+
+>>>>>>> 027125340514c24854a334f76e3c9ba758b3d22c
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +91,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        // Creation du main fragment (news)
+        NouvellesFragment nouvellesFragment = new NouvellesFragment();
+
+        //Remplacement du contenu du FrameLayout par le fragment
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, nouvellesFragment);
+        fragmentTransaction.commit();
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -95,7 +120,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Toast.makeText(this, item.toString() + "Selected!", Toast.LENGTH_LONG).show();
-        return false;
+        // Fonction qui gere.
+        int id = item.getItemId();
+
+        Toast.makeText(this, item.getTitle() + " selected!", Toast.LENGTH_LONG).show();
+
+        boolean shouldSwitch = false;
+        Fragment fragment = new NouvellesFragment();
+
+        switch(id)
+        {
+            case R.id.nav_news:
+                fragment = new NouvellesFragment();
+                shouldSwitch = true;
+                break;
+            case R.id.nav_classements:
+                fragment = new ClassementsFragment();
+                shouldSwitch = true;
+                break;
+            case R.id.nav_pistes:
+                fragment = new PistesFragment();
+                shouldSwitch = true;
+                break;
+            case R.id.nav_profil:
+                fragment = new ProfilFragment();
+                shouldSwitch = true;
+                break;
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
+                shouldSwitch = true;
+                break;
+            default:
+                break;
+        }
+
+        if (shouldSwitch) {
+            //Remplacement du contenu du FrameLayout par le fragment
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.addToBackStack("page " + id);
+            fragmentTransaction.commit();
+
+            mDrawerLayout.closeDrawers();
+        }
+
+        return true;
     }
+
 }
