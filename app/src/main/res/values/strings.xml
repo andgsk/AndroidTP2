@@ -20,7 +20,16 @@
     <string name="Ville">Ville</string>
     <string name="CodePostal">Code postal</string>
     <string name="btnIsncr">Terminer</string>
-
+    <string name="modProfil">Modifier le profil</string>
+    <string name="modAdresse">Modifier adresse</string>
+    <string name="Decon">Deconnexion</string>
+    <string name="save">Sauvegarder</string>
+    <string name="nomPiste">Nom de la piste</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="ajouterImage">Ajouter image</string>
+    <string name="commentaires">Commentaires</string>
+    <string name="block">Block</string>
+    <string name="voie">Voie</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

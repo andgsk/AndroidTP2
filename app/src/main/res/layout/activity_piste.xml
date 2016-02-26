@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/txtNomPiste" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="[piste]"
+        android:id="@+id/txtNomPiste"
+        android:layout_above="@+id/txtDiffPiste"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="[difficulté]"
+        android:id="@+id/txtDiffPiste"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/txtNomPiste"
+        android:layout_alignStart="@+id/txtNomPiste" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="[couleur]"
+        android:id="@+id/txtCouleur"
+        android:layout_alignLeft="@+id/txtDiffPiste"
+        android:layout_alignStart="@+id/txtDiffPiste"
+        android:layout_below="@+id/txtDiffPiste" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nom &amp; Prenom ouvreur, le [date]"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/txtCouleur"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajout reussite"
+        android:id="@+id/btnAddReussite"
+        android:layout_marginBottom="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btnMod"
+        android:layout_toStartOf="@+id/btnMod" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modifier la piste"
+        android:id="@+id/btnMod"
+        android:layout_alignTop="@+id/btnAddReussite"
+        android:layout_alignRight="@+id/textView11"
+        android:layout_alignEnd="@+id/textView11"
+        android:layout_marginRight="33dp"
+        android:layout_marginEnd="33dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Critiquer la piste"
+        android:id="@+id/button4"
+        android:layout_above="@+id/btnAddReussite"
+        android:layout_toRightOf="@+id/txtDiffPiste"
+        android:layout_toEndOf="@+id/txtDiffPiste" />
+</RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/login"
+        android:ems="10"
+        android:id="@+id/txtLogin"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/txtMDP"
+        android:layout_below="@+id/txtLogin"
+        android:layout_alignLeft="@+id/txtLogin"
+        android:layout_alignStart="@+id/txtLogin"
+        android:text="@string/mdp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/txtConfMDP"
+        android:layout_below="@+id/txtMDP"
+        android:layout_alignLeft="@+id/txtMDP"
+        android:layout_alignStart="@+id/txtMDP"
+        android:text="@string/MotDePasseInsc" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/txtCourriel"
+        android:layout_below="@+id/txtConfMDP"
+        android:layout_alignLeft="@+id/txtConfMDP"
+        android:layout_alignStart="@+id/txtConfMDP"
+        android:text="@string/Courriel" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/txtnumTel"
+        android:layout_below="@+id/txtCourriel"
+        android:layout_centerHorizontal="true"
+        android:text="@string/Tel" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/Nom"
+        android:ems="10"
+        android:id="@+id/txtNom"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/txtnumTel"
+        android:layout_alignStart="@+id/txtnumTel" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/Prenom"
+        android:ems="10"
+        android:id="@+id/txtPrenom"
+        android:layout_below="@+id/txtNom"
+        android:layout_alignLeft="@+id/txtNom"
+        android:layout_alignStart="@+id/txtNom"
+        android:layout_marginTop="30dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:id="@+id/btnSave"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="26dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
