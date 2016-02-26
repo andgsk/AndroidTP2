@@ -1,6 +1,7 @@
 package deptinfo.cegepgarneau.ca.tp2.fragments;
 
 import android.app.Fragment;
+import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
