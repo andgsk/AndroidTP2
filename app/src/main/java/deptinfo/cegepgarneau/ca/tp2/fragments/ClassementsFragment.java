@@ -8,15 +8,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.adapters.TabsPagerAdapter;
-import deptinfo.cegepgarneau.ca.tp2.fragments.classBlockFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.classVoieFragment;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
-import deptinfo.cegepgarneau.ca.tp2.adapters.TabsPagerAdapter;
 
 /**
  * Created by Renaud-Charles on 22/02/2016.
@@ -79,7 +75,7 @@ public class ClassementsFragment extends Fragment {
         String[] tabs = getResources().getStringArray(R.array.tabs);
 
         //Ajout des fragments
-        adapter.addFragment(new classBlockFragment(), tabs[0]);
+        adapter.addFragment(new classBlocFragment(), tabs[0]);
         adapter.addFragment(new classVoieFragment(), tabs[1]);
         viewPager.setAdapter(adapter);
     }

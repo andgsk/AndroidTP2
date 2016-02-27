@@ -3,18 +3,24 @@ package deptinfo.cegepgarneau.ca.tp2.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.support.v4.app.Fragment;
+import android.widget.ArrayAdapter;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
+import deptinfo.cegepgarneau.ca.tp2.adapters.ListeVoiesAdapter;
 
 /**
  * Created by Andrey on 2016-02-26.
  */
-public class classVoieFragment extends Fragment {
+public class classVoieFragment extends ListFragment {
+
+    private  String[] arrChoix ={"Terreur", "Nocturne", "Tranquile", "Beau Soleil", "Flamante"};
+
     public classVoieFragment() {
     }
 
@@ -28,6 +34,8 @@ public class classVoieFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Création du fragment à partir du layout
         View v = inflater.inflate(R.layout.fragment_classvoie,container,false);
+
+        this.setListAdapter(new ListeVoiesAdapter(this.getContext(), R.layout.liste_item_pistes, R.id.txtNomPiste, this.arrChoix));
         return v;
     }
 }

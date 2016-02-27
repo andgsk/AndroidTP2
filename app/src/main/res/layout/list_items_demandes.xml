@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/imgMembre"
+            android:id="@+id/imgPiste"
             android:src="@android:drawable/ic_menu_add" />
 
         <TextView
@@ -23,8 +23,8 @@
             android:text="@string/membre"
             android:id="@+id/txtNomMembre"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imgMembre"
-            android:layout_toEndOf="@+id/imgMembre" />
+            android:layout_toRightOf="@+id/imgPiste"
+            android:layout_toEndOf="@+id/imgPiste" />
 
         <Button
             android:layout_width="wrap_content"
@@ -35,7 +35,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_column="4" />
+            android:layout_column="4"
+            android:onClick="onAcceptDemande"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -44,7 +45,8 @@
             android:layout_gravity="center"
             android:text="Refuser"
             android:id="@+id/btnRefuser"
-            android:layout_column="5" />
+            android:layout_column="5"
+            android:onClick="onRefuserDemande"/>
 
     </TableRow>
 

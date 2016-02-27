@@ -105,13 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         if (shouldSwitch) {
-            //Remplacement du contenu du FrameLayout par le fragment
-            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.addToBackStack("page " + id);
-            fragmentTransaction.commit();
-
-            mDrawerLayout.closeDrawers();
+            OpenFragment(fragment);
         }
 
         return true;
@@ -121,6 +115,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     {
     }
 
+    public void OpenFragment(Fragment fragment){    //Remplacement du contenu du FrameLayout par le fragment
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(fragment.toString());
+        fragmentTransaction.commit();
 
+        mDrawerLayout.closeDrawers();
+    }
 
 }
