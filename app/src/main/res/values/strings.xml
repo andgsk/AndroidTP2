@@ -36,6 +36,7 @@
     <string name="titre_classements">Classements</string>
     <string name="titre_pistes">Pistes</string>
     <string name="titre_preferences">Preferences</string>
+    <string name="titre_demandes">Invitations</string>
 
     <string-array name="tabs">
         <item>Bloc</item>

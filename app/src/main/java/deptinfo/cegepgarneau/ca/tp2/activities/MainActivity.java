@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.DemandesFragments;
 import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
@@ -93,6 +94,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_settings:
                 fragment = new SettingsFragment();
+                shouldSwitch = true;
+                break;
+            case R.id.nav_demandes:
+                fragment = new DemandesFragments();
                 shouldSwitch = true;
                 break;
             default:
