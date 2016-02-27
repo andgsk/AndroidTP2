@@ -53,4 +53,6 @@
     <string name="aVue">À vue</string>
     <string name="apTravail">Après travail</string>
     <string name="flash">Flash</string>
+    <string name="diffeprouv">Difficulté éprouvée :</string>
+    <string name="vilainOuvreur">Vilain ouvreur? Votez!</string>
 </resources>
