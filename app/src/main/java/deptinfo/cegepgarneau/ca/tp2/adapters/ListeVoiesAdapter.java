@@ -29,9 +29,6 @@ public class ListeVoiesAdapter extends ArrayAdapter<String>{
 
         View row = super.getView(position, convertView, parent);
 
-        ImageView icon = (ImageView) row.findViewById(R.id.imgPiste);
-
-
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
