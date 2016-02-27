@@ -28,7 +28,7 @@
     <string name="ajouter">Ajouter</string>
     <string name="ajouterImage">Ajouter image</string>
     <string name="commentaires">Commentaires</string>
-    <string name="block">Block</string>
+    <string name="block">Bloc</string>
     <string name="voie">Voie</string>
     <string name="txt_nav_header">Drawer</string>
     <string name="titre_nouvelles">Nouvelles</string>
@@ -38,11 +38,16 @@
     <string name="titre_preferences">Preferences</string>
 
     <string-array name="tabs">
-        <item>Block</item>
+        <item>Bloc</item>
         <item>Voie</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_nouvelles">Nouvelles</string>
     <string name="membre">Jean-Dujardins</string>
+    <string name="deconnexion">Deconnexion</string>
+    <string name="youGotIt">You got it bro??!! :D</string>
+    <string name="aVue">À vue</string>
+    <string name="apTravail">Après travail</string>
+    <string name="flash">Flash</string>
 </resources>

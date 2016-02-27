@@ -3,12 +3,67 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
         android:layout_width="match_parent" android:layout_height="match_parent">
 
-        <Button
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/youGotIt"
+            android:id="@+id/textView3"
+            android:textSize="60dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="132dp">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/apTravail"
+                android:id="@+id/rdoApTravail"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/flash"
+                android:id="@+id/rdoFlash"
+                android:checked="false" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/aVue"
+                android:id="@+id/rdoAVue"
+                android:checked="false" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Voie -> Nom"
+            android:id="@+id/txtNomVoie"
+            android:layout_gravity="center_horizontal"
+            android:textSize="35dp" />
+
+    </LinearLayout>
+
+    <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save"
             android:id="@+id/button"
             android:layout_marginBottom="30dp"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

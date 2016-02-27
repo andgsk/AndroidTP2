@@ -11,29 +11,34 @@
         android:id="@+id/txtNomPiste"
         android:layout_marginTop="25dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New CheckBox"
-        android:id="@+id/checkBox"
-        android:layout_below="@+id/txtNomPiste"
-        android:layout_alignLeft="@+id/txtNomPiste"
-        android:layout_alignStart="@+id/txtNomPiste"
+        android:text="@string/voie"
+        android:id="@+id/chkVoie"
         android:layout_alignRight="@+id/txtNomPiste"
-        android:layout_alignEnd="@+id/txtNomPiste" />
+        android:layout_alignEnd="@+id/txtNomPiste"
+        android:checked="false"
+        android:layout_below="@+id/txtNomPiste"
+        android:layout_alignLeft="@+id/btnAddImg"
+        android:layout_alignStart="@+id/btnAddImg" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New CheckBox"
-        android:id="@+id/checkBox2"
-        android:layout_below="@+id/checkBox"
-        android:layout_alignLeft="@+id/checkBox"
-        android:layout_alignStart="@+id/checkBox"
-        android:layout_alignRight="@+id/checkBox"
-        android:layout_alignEnd="@+id/checkBox" />
+        android:text="@string/block"
+        android:id="@+id/chkBloc"
+        android:layout_below="@+id/chkVoie"
+        android:layout_alignLeft="@+id/chkVoie"
+        android:layout_alignStart="@+id/chkVoie"
+        android:layout_alignRight="@+id/chkVoie"
+        android:layout_alignEnd="@+id/chkVoie"
+        android:checked="false" />
 
     <Button
         android:layout_width="wrap_content"
@@ -41,7 +46,7 @@
         android:text="@string/ajouterImage"
         android:id="@+id/btnAddImg"
         android:layout_marginTop="41dp"
-        android:layout_below="@+id/checkBox2"
+        android:layout_below="@+id/chkBloc"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -51,18 +56,21 @@
         android:layout_marginBottom="33dp"
         android:text="@string/ajouter"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_alignTop="@+id/btnAddImg"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/txtComm"
         android:layout_alignRight="@+id/btnAdd"
-        android:layout_alignEnd="@+id/btnAdd" />
+        android:layout_alignEnd="@+id/btnAdd"
+        android:layout_below="@+id/btnAddImg" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -75,5 +83,14 @@
         android:layout_alignEnd="@+id/btnAddImg"
         android:text="@string/commentaires"
         android:inputType="text" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spiDiff"
+        android:layout_below="@+id/chkBloc"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:spinnerMode="dropdown" />
 
 </RelativeLayout>
