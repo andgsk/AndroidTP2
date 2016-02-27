@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
@@ -26,6 +27,20 @@ public class ProfilFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_myprofil,container,false);
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_profil);
+
+        /*
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                MainActivity activity = (MainActivity) context;
+                activity.OpenFragment(new PistesFragment());
+                Toast.makeText(context, "Invitation envoye!", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        */
+
         return  view;
     }
 

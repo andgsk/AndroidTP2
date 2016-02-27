@@ -1,74 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="1">
+        android:layout_height="wrap_content"
+        android:id="@+id/tableLayout">
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:text="@string/modProfil"
-            android:id="@+id/btnModProfil"
-            android:onClick="onClick"/>
-
-        <Button
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/modAdresse"
-            android:id="@+id/btnModAdresse"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.06"
-            android:onClick="onClick"/>
+            android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="300dp">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/imgMembre"
+                android:src="@mipmap/ic_profile" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Nom Prenom de l&apos;utilisateur"
-                android:id="@+id/txtNom"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.05"
-                android:textSize="50dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="@string/txtNomMembre"
+                android:id="@+id/txtNomMembre"
+                android:layout_marginLeft="10dp" />
+        </TableRow>
+    </TableLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Son rôle"
-                android:id="@+id/txtrole"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.05"
-                android:textSize="50dp"
-                android:layout_marginTop="59dp"
-                android:layout_below="@+id/txtNom"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtInviterMembre"
+        android:id="@+id/button5"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-        </RelativeLayout>
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView2"
+        android:layout_below="@+id/tableLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/button5">
 
-        <Button
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/deconnexion"
-            android:id="@+id/btnDec"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_weight="0.37"
-            android:onClick="onClick"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tableLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/button5"
+            android:stretchColumns="1">
 
-</LinearLayout>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imgAdresse"
+                    android:src="@drawable/ic_contacts_black_24dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/txtImgAdresse"
+                    android:tint="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/txtAdresse"
+                    android:id="@+id/txtAdresse"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imgEmail"
+                    android:src="@drawable/ic_contact_mail_black_24dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/txtIconMail"
+                    android:tint="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/txtEmail"
+                    android:id="@+id/txtEmail"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:autoLink="email"
+                    android:linksClickable="true"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imgNoTelephone"
+                    android:src="@drawable/ic_contact_phone_black_24dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/txtIconNoTelephone"
+                    android:tint="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/txtNoTelephone"
+                    android:id="@+id/txtNoTelephone"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:autoLink="phone"
+                    android:linksClickable="true"/>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imgStatus"
+                    android:src="@drawable/ic_assignment_black_24dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/txtIconStatus"
+                    android:tint="@color/primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/txtStatus"
+                    android:id="@+id/txtStatus"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+
+</RelativeLayout>

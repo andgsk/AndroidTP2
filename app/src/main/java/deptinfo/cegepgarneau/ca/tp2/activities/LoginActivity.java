@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         //Remplacement du contenu du FrameLayout par le fragment
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, loginFragment);
-        fragmentTransaction.addToBackStack("login");
         fragmentTransaction.commit();
     }
 
@@ -68,8 +67,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onInscriptionTerminerClick(View view){
         //Fragment manager.
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = this.getFragmentManager();
 
+        //On enleve les inscriptions du back stack.
+        fragmentManager.popBackStackImmediate(null, fragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+        /*
         //Initialisation du fragment
         LoginFragment loginFragment = new LoginFragment();
 
@@ -77,8 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, loginFragment);
         fragmentTransaction.commit();
-
-        //On enleve les inscription du back stack.
-        fragmentManager.popBackStackImmediate("login", fragmentManager.POP_BACK_STACK_INCLUSIVE);
+        */
     }
 }
