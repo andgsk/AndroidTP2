@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
+import deptinfo.cegepgarneau.ca.tp2.adapters.ListeDemandesAdapter;
 
 /**
  * Created by Renaud-Charles on 22/02/2016.
@@ -33,7 +34,7 @@ public class DemandesFragments extends ListFragment {
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_demandes);
 
-        this.setListAdapter(new ArrayAdapter<String>(this.getContext(), R.layout.list_items_demandes, R.id.txtNomMembre, this.arrChoix));
+        this.setListAdapter(new ListeDemandesAdapter(this.getContext(), R.layout.list_items_demandes, R.id.txtNomMembre, this.arrChoix));
         return  view;
     }
 
