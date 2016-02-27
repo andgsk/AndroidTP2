@@ -66,15 +66,14 @@
                     android:contentDescription="@string/txtImgAdresse"
                     android:tint="@color/primary" />
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/txtAdresse"
                     android:id="@+id/txtAdresse"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginLeft="10dp" />
 
             </TableRow>
 
@@ -91,7 +90,7 @@
                     android:contentDescription="@string/txtIconMail"
                     android:tint="@color/primary" />
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -99,7 +98,8 @@
                     android:id="@+id/txtEmail"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:autoLink="email"
+                    android:linksClickable="true"/>
             </TableRow>
 
             <TableRow
@@ -115,7 +115,7 @@
                     android:contentDescription="@string/txtIconNoTelephone"
                     android:tint="@color/primary" />
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
@@ -123,7 +123,8 @@
                     android:id="@+id/txtNoTelephone"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:autoLink="phone"
+                    android:linksClickable="true"/>
             </TableRow>
 
             <TableRow
@@ -139,15 +140,14 @@
                     android:contentDescription="@string/txtIconStatus"
                     android:tint="@color/primary" />
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/txtStatus"
                     android:id="@+id/txtStatus"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginLeft="10dp" />
             </TableRow>
         </TableLayout>
     </ScrollView>

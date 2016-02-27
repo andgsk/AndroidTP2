@@ -37,6 +37,7 @@
     <string name="titre_pistes">Pistes</string>
     <string name="titre_preferences">Preferences</string>
     <string name="titre_demandes">Invitations</string>
+    <string name="titre_mod_profil">Modification Profil</string>
     <string name="txt_bloc">Bloc</string>
     <string name="txt_voie">Voie</string>
 
@@ -55,4 +56,14 @@
     <string name="flash">Flash</string>
     <string name="diffeprouv">Difficulté éprouvée :</string>
     <string name="vilainOuvreur">Vilain ouvreur? Votez!</string>
+    <string name="txtInviterMembre">Inviter Membre</string>
+    <string name="txtStatus">Ouvreur</string>
+    <string name="txtNoTelephone">555-123-4567</string>
+    <string name="txtEmail">uneadresse@gmail.com</string>
+    <string name="txtAdresse">1010 Avenue Chelier</string>
+    <string name="txtImgAdresse">Icon Adresse</string>
+    <string name="txtIconMail">Icon Mail</string>
+    <string name="txtIconNoTelephone">Icon No Telephone</string>
+    <string name="txtIconStatus">Icon Status</string>
+    <string name="txtNomMembre">Renaud-Charles Pelletier</string>
 </resources>

@@ -1,6 +1,5 @@
 package deptinfo.cegepgarneau.ca.tp2.activities;
 
-import android.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
@@ -8,9 +7,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
@@ -19,8 +18,6 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.modAdresseFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.modProfilFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -29,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public DrawerLayout mDrawerLayout;
     public NavigationView mNavigationView;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
+    public boolean showMenu = false;
 
 
     @Override
@@ -62,7 +60,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return showMenu;
+    }
 
+    public void inflateMenu(){
+
+    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -70,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         Toast.makeText(this, item.getTitle() + " selected!", Toast.LENGTH_LONG).show();
+
+        // Hide le menu.
+        showMenu = false;
 
         boolean shouldSwitch = false;
         Fragment fragment = new NouvellesFragment();
@@ -89,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldSwitch = true;
                 break;
             case R.id.nav_profil:
+                showMenu = true;
                 fragment = new ProfilFragment();
                 shouldSwitch = true;
                 break;
@@ -107,6 +118,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (shouldSwitch) {
             OpenFragment(fragment);
         }
+
+        // Refresh le menu.
+        invalidateOptionsMenu();
 
         return true;
     }
