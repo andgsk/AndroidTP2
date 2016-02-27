@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="168dp"
         android:weightSum="1"
-        android:layout_weight="0.56">
+        android:layout_weight="0.25">
 
         <TextView
             android:layout_width="wrap_content"
