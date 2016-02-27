@@ -13,10 +13,10 @@ import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 /**
  * Created by Renaud-Charles on 22/02/2016.
  */
-public class ModProfilFragment extends Fragment {
+public class modProfilFragment extends Fragment {
 
     // Constructeur
-    public ModProfilFragment(){
+    public modProfilFragment(){
 
     }
 

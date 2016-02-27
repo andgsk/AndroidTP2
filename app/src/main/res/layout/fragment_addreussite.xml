@@ -16,41 +16,49 @@
             android:id="@+id/textView3"
             android:textSize="60dp" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="132dp">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/apTravail"
-                android:id="@+id/rdoApTravail"
-                android:checked="false" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/flash"
-                android:id="@+id/rdoFlash"
-                android:checked="false" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/aVue"
-                android:id="@+id/rdoAVue"
-                android:checked="false" />
-        </LinearLayout>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Voie -> Nom"
+            android:text="Voie ou Bloc -> Nom"
             android:id="@+id/txtNomVoie"
             android:layout_gravity="center_horizontal"
             android:textSize="35dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="409dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/apTravail"
+                    android:id="@+id/rdoApTravail"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/flash"
+                    android:id="@+id/rdoFlash"
+                    android:checked="false" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aVue"
+                    android:id="@+id/rdoAVue"
+                    android:checked="false" />
+            </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

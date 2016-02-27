@@ -26,6 +26,7 @@
                 android:id="@+id/txtNomMembre"
                 android:layout_marginLeft="10dp" />
         </TableRow>
+
     </TableLayout>
 
     <Button
@@ -124,6 +125,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp" />
+
             </TableRow>
 
             <TableRow
@@ -147,9 +149,23 @@
                     android:id="@+id/txtStatus"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_marginRight="10dp"
+                    android:layout_column="1" />
+
             </TableRow>
         </TableLayout>
     </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/modProfil"
+        android:id="@+id/modProfil"
+        android:onClick="onClick"
+        android:layout_above="@+id/button5"
+        android:layout_alignLeft="@+id/button5"
+        android:layout_alignStart="@+id/button5"
+        android:layout_alignRight="@+id/button5"
+        android:layout_alignEnd="@+id/button5" />
 
 </RelativeLayout>

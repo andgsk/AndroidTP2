@@ -1,7 +1,7 @@
 package deptinfo.cegepgarneau.ca.tp2.fragments;
 
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-
 import deptinfo.cegepgarneau.ca.tp2.R;
 
 /**
@@ -35,6 +34,7 @@ public class critiquerFragment extends Fragment implements Spinner.OnItemSelecte
             "5.14a", "5.14b","5.14c", "5.14d","5.15a", "5.15b","v0", "v1", "v2",
         "v3", "v4", "v5", "v6", "v7", "v8", "v9",
         "v10", "v11", "v12", "v13", "v14", "v15"};
+    private  String[] arrNote ={"1","2","3","4","5"};
 
     public critiquerFragment() {
     }
@@ -42,11 +42,17 @@ public class critiquerFragment extends Fragment implements Spinner.OnItemSelecte
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.fragment_critiquerpiste, container, false);
         Spinner spinner = (Spinner) v.findViewById(R.id.cbDiff);
         ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrDiff);
         LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(LTRadapter);
+
+        Spinner sp = (Spinner) v.findViewById(R.id.cbOuvr);
+        ArrayAdapter<String> LTRadap = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrNote);
+        LTRadap.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        sp.setAdapter(LTRadap);
 
         return v;
     }
@@ -61,6 +67,4 @@ public class critiquerFragment extends Fragment implements Spinner.OnItemSelecte
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
 }

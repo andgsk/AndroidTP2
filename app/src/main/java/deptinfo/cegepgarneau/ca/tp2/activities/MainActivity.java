@@ -18,6 +18,11 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.modProfilFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.modLoginMdpFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.ajoutReussiteFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.modPisteFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.critiquerFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -100,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_profil:
                 showMenu = true;
-                fragment = new ProfilFragment();
+                fragment = new modProfilFragment();
                 shouldSwitch = true;
                 break;
             case R.id.nav_settings:
@@ -127,6 +132,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void onClick(View view)
     {
+        Boolean shouldChange= false;
+        Fragment fragment = new NouvellesFragment();
+
+        switch (view.getId()) {
+            case R.id.modProfil:
+                shouldChange = true;
+                fragment = new modLoginMdpFragment();
+                break;
+            case R.id.btnSaveProfil:
+            shouldChange = true;
+            fragment = new ProfilFragment();
+            break;
+            case R.id.btnAddReussite:
+                shouldChange = true;
+                fragment = new ajoutReussiteFragment();
+                break;
+            case R.id.btnCritiquer:
+                shouldChange = true;
+                fragment = new critiquerFragment();
+                break;
+            case R.id.btnMod:
+                shouldChange = true;
+                fragment = new modPisteFragment();
+                break;
+        }
+        if (shouldChange == true) {
+            OpenFragment(fragment);
+        }
     }
 
     public void OpenFragment(Fragment fragment){    //Remplacement du contenu du FrameLayout par le fragment

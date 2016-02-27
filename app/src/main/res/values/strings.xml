@@ -66,4 +66,6 @@
     <string name="txtIconNoTelephone">Icon No Telephone</string>
     <string name="txtIconStatus">Icon Status</string>
     <string name="txtNomMembre">Renaud-Charles Pelletier</string>
+    <string name="newLogin">Nouveau login</string>
+    <string name="confirmationLogin">Confirmer login</string>
 </resources>
