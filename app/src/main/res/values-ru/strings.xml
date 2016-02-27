@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>  <string name="app_name">Escalade</string>
+    <string name="nom">Ваша фамилия</string>
+    <string name="login">Логин</string>
+    <string name="mdp">Пароль</string>
+    <string name="connexion">Connexion</string>
+    <string name="Inscription">Inscription</string>
+    <string name="lblinscr">Inscription</string>
+    <string name="nameInsc">Имя</string>
+    <string name="MotDePasseInsc">Пароль</string>
+    <string name="ConfirmationMDP">Подтвердить</string>
+    <string name="Courriel">и-мєйл</string>
+    <string name="Tel">Телефон</string>
+    <string name="Continuer">Породолжить</string>
+    <string name="Annuler">отменить</string>
+    <string name="Nom">Фамилия</string>
+    <string name="Prenom">Имя</string>
+    <string name="NoCiv">Номер дома</string>
+    <string name="Rue">Улица</string>
+    <string name="Ville">город</string>
+    <string name="CodePostal">Почтовій индекс</string>
+    <string name="btnIsncr">Закончить</string>
+    <string name="modProfil">Изменит профиль</string>
+    <string name="modAdresse">Изменить адресс</string>
+    <string name="Decon">Выйти</string>
+    <string name="save">Сохранить</string>
+    <string name="nomPiste">Название дорожки</string>
+    <string name="ajouter">Добавить</string>
+    <string name="ajouterImage">Добавить картинку</string>
+    <string name="commentaires">Комментарии</string>
+    <string name="block">Блок</string>
+    <string name="voie">Дорожка</string>
+    <string name="txt_nav_header">Меню</string>
+    <string name="titre_nouvelles">Новости</string>
+    <string name="titre_profil">Профиль</string>
+    <string name="titre_classements">Топ лучших</string>
+    <string name="titre_pistes">Дорожки</string>
+    <string name="titre_preferences">Опции</string>
+
+    <string-array name="tabs">
+        <item>Блок</item>
+        <item>Дорожки</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_nouvelles">Новости</string>
+    <string name="membre">Жан-Дюжардан</string>
+    <string name="deconnexion">Выйти</string>
+    <string name="youGotIt">Получилось??!! :D</string>
+    <string name="aVue">Наугад</string>
+    <string name="apTravail">Больше одной попытки</string>
+    <string name="flash">После кого-то</string>
+    <string name="diffeprouv">Сложность :</string>
+    <string name="vilainOuvreur">Не согласны? Критикуйте!</string></resources>
