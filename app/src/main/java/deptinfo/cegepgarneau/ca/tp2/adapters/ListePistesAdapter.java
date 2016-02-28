@@ -32,7 +32,7 @@ public class ListePistesAdapter extends ArrayAdapter<String>{
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+
                 MainActivity activity = (MainActivity)context;
                 activity.OpenFragment(new pisteFragment());
                 TextView txt = (TextView)v.findViewById(R.id.txtNomPistes);
