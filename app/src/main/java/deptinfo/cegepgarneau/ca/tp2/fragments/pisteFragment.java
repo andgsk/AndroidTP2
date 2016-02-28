@@ -13,8 +13,8 @@ import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 /**
  * Created by Andrey on 2016-02-27.
  */
-public class pisteFragment extends Fragment {
-    public pisteFragment() {
+public class PisteFragment extends Fragment {
+    public PisteFragment() {
     }
 
     @Nullable

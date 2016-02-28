@@ -15,6 +15,8 @@ import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
  */
 public class modProfilFragment extends Fragment {
 
+    public String menuType = "profil";
+
     // Constructeur
     public modProfilFragment(){
 
@@ -26,19 +28,6 @@ public class modProfilFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_modprofil,container,false);
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_mod_profil);
-
-        /*
-        row.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                MainActivity activity = (MainActivity) context;
-                activity.OpenFragment(new PistesFragment());
-                Toast.makeText(context, "Invitation envoye!", Toast.LENGTH_LONG).show();
-
-            }
-        });
-        */
 
         return  view;
     }

@@ -4,13 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
-import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.PisteFragment;
 
 /**
  * Created by Renaud-Charles on 26/02/2016.
@@ -35,7 +32,7 @@ public class ListePistesAdapter extends ArrayAdapter<String>{
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 MainActivity activity = (MainActivity)context;
-                activity.OpenFragment(new pisteFragment());
+                activity.OpenFragment(new PisteFragment());
                 Toast.makeText(context,"Selection de ",Toast.LENGTH_LONG).show();
 
             }

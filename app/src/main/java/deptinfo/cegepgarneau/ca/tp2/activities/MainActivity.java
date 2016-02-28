@@ -16,7 +16,7 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.DemandesFragments;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ListesPistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.PisteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modProfilFragment;
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public NavigationView mNavigationView;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
     public android.support.v4.app.FragmentManager fragmentManager;
-    public boolean showMenu = false;
     public Fragment fragmentActu;
 
 
@@ -86,8 +85,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentActu = fragmentManager.findFragmentByTag(nomDernierFragment);
         }
 
-        // Hide le menu.
-        showMenu = false;
         RefreshTopMenu();
 
         super.onBackPressed();
@@ -96,8 +93,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        return showMenu;
+
+        if (fragmentActu instanceof ProfilFragment) {
+            getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+            return true;
+        }
+        else if (fragmentActu instanceof PisteFragment) {
+            getMenuInflater().inflate(R.menu.piste_menu, menu);
+            return true;
+        }
+        return false;
     }
 
     // Ici on fait les actions des boutons menus.
@@ -125,16 +130,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Fonction qui gere.
         int id = item.getItemId();
 
         Toast.makeText(this, item.getTitle() + " selected!", Toast.LENGTH_LONG).show();
-
-        // Hide le menu.
-        showMenu = false;
 
         boolean shouldSwitch = false;
         Fragment fragment = new NouvellesFragment();
@@ -154,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldSwitch = true;
                 break;
             case R.id.nav_profil:
-                showMenu = true;
                 fragment = new ProfilFragment();
                 shouldSwitch = true;
                 break;
@@ -173,9 +173,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (shouldSwitch) {
             OpenFragment(fragment);
         }
-
-        // Refresh le menu en haut a droite.
-        RefreshTopMenu();
 
         return true;
     }
@@ -228,11 +225,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
 
         fragmentActu = fragment;
+        RefreshTopMenu();
+        
         mDrawerLayout.closeDrawers();
     }
 
     public void OpenFragment(Fragment fragment){
         OpenFragment(fragment, false);
     }
+
 
 }

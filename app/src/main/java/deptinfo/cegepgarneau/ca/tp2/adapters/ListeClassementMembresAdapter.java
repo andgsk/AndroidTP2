@@ -10,7 +10,6 @@ import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
 
 /**
  * Created by Renaud-Charles on 26/02/2016.

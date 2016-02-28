@@ -27,19 +27,6 @@ public class ProfilFragment extends Fragment {
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_profil);
 
-        /*
-        row.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                MainActivity activity = (MainActivity) context;
-                activity.OpenFragment(new PistesFragment());
-                Toast.makeText(context, "Invitation envoye!", Toast.LENGTH_LONG).show();
-
-            }
-        });
-        */
-
         return  view;
     }
 

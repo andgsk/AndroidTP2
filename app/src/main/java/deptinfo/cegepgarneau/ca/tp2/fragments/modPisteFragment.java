@@ -14,6 +14,9 @@ import deptinfo.cegepgarneau.ca.tp2.R;
  * Created by Andrey on 2016-02-27.
  */
 public class modPisteFragment extends Fragment {
+
+    private String showMenu = "piste";
+
     public modPisteFragment() {
     }
 
