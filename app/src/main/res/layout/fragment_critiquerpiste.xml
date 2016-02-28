@@ -49,6 +49,7 @@
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:text="@string/ConfirmationMDP"
-        android:id="@+id/button2"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/btnCritiquer"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClick"/>
 </LinearLayout>

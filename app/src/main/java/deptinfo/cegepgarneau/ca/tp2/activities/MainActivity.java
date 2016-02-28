@@ -150,9 +150,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new modLoginMdpFragment();
                 break;
             case R.id.btnSaveProfil:
-            shouldChange = true;
-            fragment = new ProfilFragment();
-            break;
+                shouldChange = true;
+                fragment = new modProfilFragment();
+                break;
             case R.id.btnAddReussite:
                 shouldChange = true;
                 fragment = new ajoutReussiteFragment();
@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldChange = true;
                 fragment = new modPisteFragment();
                 break;
+
         }
         if (shouldChange == true) {
             OpenFragment(fragment);

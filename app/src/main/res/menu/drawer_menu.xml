@@ -21,6 +21,7 @@
             android:id="@+id/nav_demandes"
             android:icon="@android:drawable/ic_menu_camera"
             android:title="@string/titre_demandes" />
+
     </group>
     <group android:checkableBehavior="single">
         <item

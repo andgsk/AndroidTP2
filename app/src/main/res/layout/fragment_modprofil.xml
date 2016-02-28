@@ -166,6 +166,7 @@
         android:layout_alignLeft="@+id/button5"
         android:layout_alignStart="@+id/button5"
         android:layout_alignRight="@+id/button5"
-        android:layout_alignEnd="@+id/button5" />
+        android:layout_alignEnd="@+id/button5"
+        />
 
 </RelativeLayout>
