@@ -10,6 +10,7 @@ import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
 
 /**
  * Created by Renaud-Charles on 26/02/2016.
@@ -34,7 +35,7 @@ public class ListeVoiesAdapter extends ArrayAdapter<String>{
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 MainActivity activity = (MainActivity)context;
-                activity.OpenFragment(new PistesFragment());
+                activity.OpenFragment(new pisteFragment());
                 Toast.makeText(context,"Selection de ",Toast.LENGTH_LONG).show();
 
             }

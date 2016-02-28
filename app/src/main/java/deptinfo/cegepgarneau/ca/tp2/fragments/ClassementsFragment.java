@@ -45,25 +45,7 @@ public class ClassementsFragment extends Fragment {
         //Association du TabLayout au ViewPager.
         tabLayout.setupWithViewPager(viewPager);
 
-        /*
-        //Gestionnaire d'événements sur la sélection d'un onglet.
-        tabLayout.setOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                Toast.makeText(getActivity().getApplicationContext(), "Selection de " + tab.getText(), Toast.LENGTH_LONG).show();
-            }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                Toast.makeText(getActivity().getApplicationContext(),"Désélection de " + tab.getText(),Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                Toast.makeText(getActivity().getApplicationContext(),"Resélection de " + tab.getText(),Toast.LENGTH_LONG).show();
-            }
-        });
-        */
 
         return  view;
     }
