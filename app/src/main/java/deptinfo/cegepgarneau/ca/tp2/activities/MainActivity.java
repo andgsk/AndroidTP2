@@ -94,8 +94,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-        return showMenu;
+        if (fragmentActu instanceof ProfilFragment) {
+            getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+            return true;
+        }
+        else if (fragmentActu instanceof PisteFragment) {
+            getMenuInflater().inflate(R.menu.piste_menu, menu);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.modif_profil:
+                Toast.makeText(this, "Vous modifiez votre profil.",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.inviter_utilisateur:
+                Toast.makeText(this, "Vous invitez un utilisateur.",Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -114,9 +136,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         Toast.makeText(this, item.getTitle() + " selected!", Toast.LENGTH_LONG).show();
-
-        // Hide le menu.
-        showMenu = false;
 
         boolean shouldSwitch = false;
         Fragment fragment = new NouvellesFragment();
@@ -157,9 +176,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (shouldSwitch) {
             OpenFragment(fragment);
         }
-
-        // Refresh le menu en haut a droite.
-        RefreshTopMenu();
 
         return true;
     }
@@ -217,6 +233,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
 
         fragmentActu = fragment;
+        RefreshTopMenu();
+
         mDrawerLayout.closeDrawers();
     }
 
