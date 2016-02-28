@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Variables
     public Toolbar mToolbar;
-    public DrawerLayout mDrawerLayout;
+    private DrawerLayout mDrawerLayout;
     public NavigationView mNavigationView;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
     public android.support.v4.app.FragmentManager fragmentManager;
@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
 
+        mDrawerLayout.closeDrawers();
+
         int nbBackFragments = getSupportFragmentManager().getBackStackEntryCount();
 
         if (nbBackFragments > 0){
@@ -96,6 +98,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return showMenu;
+    }
+
+    // Ici on fait les actions des boutons menus.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.modif_profil:
+                Toast.makeText(this, "Vous avez cliquez sur ajouter",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.inviter_utilisateur:
+                Toast.makeText(this, "Vous avez cliquez sur actualiser",Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

@@ -3,10 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_name"
-        android:icon="@drawable/ic_assignment_black_24dp"
-        android:title="Text to be seen by user"
-        app:showAsAction="always"
+        android:id="@+id/modif_profil"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_contacts_black_24dp"
+        android:title="Modifier Profil"
         android:orderInCategory="0"/>
+
+    <item
+        android:id="@+id/inviter_utilisateur"
+        app:showAsAction="never"
+        android:title="Inviter Utilisateur"
+        android:icon="@drawable/ic_contacts_black_24dp"
+        android:orderInCategory="100" />
 
 </menu>

@@ -30,7 +30,7 @@ public class ListesPistesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_classement,container,false);
+        View view = inflater.inflate(R.layout.fragment_liste_pistes,container,false);
 
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_pistes);
