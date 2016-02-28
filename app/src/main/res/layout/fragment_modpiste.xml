@@ -39,17 +39,18 @@
         android:text="@string/ajouterImage"
         android:id="@+id/btnAddPic"
         android:layout_below="@+id/spinner"
-        android:layout_toRightOf="@+id/btnSaveProfil"
-        android:layout_toEndOf="@+id/btnSaveProfil" />
+        android:layout_toRightOf="@+id/btnsavemodpiste"
+        android:layout_toEndOf="@+id/btnsavemodpiste" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
-        android:id="@+id/btnSaveProfil"
+        android:id="@+id/btnsavemodpiste"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="33dp" />
+        android:layout_marginBottom="33dp"
+        android:onClick="onClick" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -57,7 +58,7 @@
         android:id="@+id/imageView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnSaveProfil"
+        android:layout_above="@+id/btnsavemodpiste"
         android:layout_toLeftOf="@+id/btnAddPic"
         android:layout_toStartOf="@+id/btnAddPic"
         android:layout_below="@+id/spinner" />
@@ -67,6 +68,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:layout_below="@+id/chkBlock"
+        android:layout_toEndOf="@+id/imageView4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

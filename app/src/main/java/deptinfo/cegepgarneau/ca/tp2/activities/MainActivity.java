@@ -16,7 +16,6 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.DemandesFragments;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ListesPistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.PisteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modProfilFragment;
@@ -24,15 +23,17 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.modLoginMdpFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ajoutReussiteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modPisteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.critiquerFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Variables
     public Toolbar mToolbar;
-    private DrawerLayout mDrawerLayout;
+    public DrawerLayout mDrawerLayout;
     public NavigationView mNavigationView;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
     public android.support.v4.app.FragmentManager fragmentManager;
+    public boolean showMenu = false;
     public Fragment fragmentActu;
 
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-        mToolbar, R.string.app_name, R.string.app_name);
+        mToolbar, R.string.txt_nav_header, R.string.txt_nav_header);
 
         mDrawerLayout.setDrawerListener(toggle);
 
@@ -75,8 +76,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
 
-        mDrawerLayout.closeDrawers();
-
         int nbBackFragments = getSupportFragmentManager().getBackStackEntryCount();
 
         if (nbBackFragments > 0){
@@ -85,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentActu = fragmentManager.findFragmentByTag(nomDernierFragment);
         }
 
+        // Hide le menu.
+        showMenu = false;
         RefreshTopMenu();
 
         super.onBackPressed();
@@ -93,32 +94,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
-        if (fragmentActu instanceof ProfilFragment) {
-            getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-            return true;
-        }
-        else if (fragmentActu instanceof PisteFragment) {
-            getMenuInflater().inflate(R.menu.piste_menu, menu);
-            return true;
-        }
-        return false;
-    }
-
-    // Ici on fait les actions des boutons menus.
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.modif_profil:
-                Toast.makeText(this, "Vous avez cliquez sur ajouter",Toast.LENGTH_LONG).show();
-                return true;
-            case R.id.inviter_utilisateur:
-                Toast.makeText(this, "Vous avez cliquez sur actualiser",Toast.LENGTH_LONG).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return showMenu;
     }
 
     @Override
@@ -130,12 +107,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Fonction qui gere.
         int id = item.getItemId();
 
         Toast.makeText(this, item.getTitle() + " selected!", Toast.LENGTH_LONG).show();
+
+        // Hide le menu.
+        showMenu = false;
 
         boolean shouldSwitch = false;
         Fragment fragment = new NouvellesFragment();
@@ -155,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldSwitch = true;
                 break;
             case R.id.nav_profil:
+                showMenu = true;
                 fragment = new ProfilFragment();
                 shouldSwitch = true;
                 break;
@@ -168,11 +150,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             default:
                 break;
+
+
         }
 
         if (shouldSwitch) {
             OpenFragment(fragment);
         }
+
+        // Refresh le menu en haut a droite.
+        RefreshTopMenu();
 
         return true;
     }
@@ -191,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldChange = true;
                 fragment = new modLoginMdpFragment();
                 break;
-            case R.id.btnSaveProfil:
+            case R.id.btnsavemodpiste:
                 shouldChange = true;
                 fragment = new modProfilFragment();
                 break;
@@ -207,6 +194,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldChange = true;
                 fragment = new modPisteFragment();
                 break;
+            case R.id.finishaddreussite:
+                shouldChange = true;
+                fragment = new ClassementsFragment();
+                break;
+
 
         }
         if (shouldChange == true) {
@@ -225,14 +217,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
 
         fragmentActu = fragment;
-        RefreshTopMenu();
-
         mDrawerLayout.closeDrawers();
     }
 
     public void OpenFragment(Fragment fragment){
         OpenFragment(fragment, false);
     }
-
 
 }
