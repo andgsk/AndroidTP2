@@ -16,7 +16,6 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.DemandesFragments;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ListesPistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modProfilFragment;
@@ -24,6 +23,7 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.modLoginMdpFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ajoutReussiteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modPisteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.critiquerFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -150,6 +150,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             default:
                 break;
+
+
         }
 
         if (shouldSwitch) {
@@ -176,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldChange = true;
                 fragment = new modLoginMdpFragment();
                 break;
-            case R.id.btnSaveProfil:
+            case R.id.btnsavemodpiste:
                 shouldChange = true;
                 fragment = new modProfilFragment();
                 break;
@@ -192,6 +194,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldChange = true;
                 fragment = new modPisteFragment();
                 break;
+            case R.id.finishaddreussite:
+                shouldChange = true;
+                fragment = new ClassementsFragment();
+                break;
+
 
         }
         if (shouldChange == true) {
