@@ -2,6 +2,7 @@ package deptinfo.cegepgarneau.ca.tp2.activities;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,8 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.modLoginMdpFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ajoutReussiteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modPisteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.critiquerFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.PisteFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.addPisteFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getMenuInflater().inflate(R.menu.profil_menu, menu);
             return true;
         }
-        else if (fragmentActu instanceof PisteFragment) {
+        else if (fragmentActu instanceof pisteFragment) {
             getMenuInflater().inflate(R.menu.piste_menu, menu);
             return true;
         }
@@ -107,17 +109,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Boolean shouldSwitch = false;
+        Fragment fragment = new NouvellesFragment();
 
         switch (item.getItemId()) {
             case R.id.modif_profil:
-                Toast.makeText(this, "Vous modifiez votre profil.",Toast.LENGTH_LONG).show();
-                return true;
+                shouldSwitch = true;
+                fragment = new modLoginMdpFragment();
+                break;
             case R.id.inviter_utilisateur:
-                Toast.makeText(this, "Vous invitez un utilisateur.",Toast.LENGTH_LONG).show();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+                Toast.makeText(this, "Uilisateur invité!", Toast.LENGTH_LONG).show();
+                fragment = new ListesPistesFragment();
+                shouldSwitch = true;
+                break;
+            case R.id.critiquer_piste:
+                fragment = new critiquerFragment();
+                shouldSwitch = true;
+                break;
+            case R.id.modifier_piste:
+                fragment = new modPisteFragment();
+                shouldSwitch = true;
+                break;
+            case R.id.ajouter_piste:
+                fragment = new addPisteFragment();
+                shouldSwitch = true;
+                break;
+
         }
+
+            if (shouldSwitch == true) {
+                OpenFragment(fragment);
+            }
+return true;
+
     }
 
     @Override
@@ -190,32 +214,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment fragment = new NouvellesFragment();
 
         switch (view.getId()) {
-            case R.id.modProfil:
+            case R.id.btnsaveajoutmodpiste:
+                fragment = new ListesPistesFragment();
                 shouldChange = true;
-                fragment = new modLoginMdpFragment();
-                break;
-            case R.id.btnsavemodpiste:
-                shouldChange = true;
-                fragment = new modProfilFragment();
-                break;
-            case R.id.btnAddReussite:
-                shouldChange = true;
-                fragment = new ajoutReussiteFragment();
-                break;
-            case R.id.btnCritiquer:
-                shouldChange = true;
-                fragment = new critiquerFragment();
-                break;
-            case R.id.btnMod:
-                shouldChange = true;
-                fragment = new modPisteFragment();
                 break;
             case R.id.finishaddreussite:
+                fragment = new ListesPistesFragment();
                 shouldChange = true;
-                fragment = new ClassementsFragment();
                 break;
+            case R.id.btnFinishCritiquer:
+                fragment = new ListesPistesFragment();
+                shouldChange = true;
+                break;
+            case R.id.btnsavemodutil:
+                fragment = new ProfilFragment();
+                shouldChange = true;
+                break;
+            case R.id.btnAddPic:
 
+                Toast.makeText(this, "Image ajoutée, lol :D joke", Toast.LENGTH_LONG).show();
 
+                break;
+            case R.id.btnsavemodpiste:
+                fragment = new ListesPistesFragment();
+                shouldChange = true;
+                break;
         }
         if (shouldChange == true) {
             OpenFragment(fragment);

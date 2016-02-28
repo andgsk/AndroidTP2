@@ -86,18 +86,19 @@
         android:layout_height="wrap_content"
         android:text="@string/btnIsncr"
         android:id="@+id/btnTerInscr"
-        android:layout_alignTop="@+id/btnAnnuler"
+        android:onClick="onInscriptionTerminerClick"
+        android:layout_below="@+id/txtCodeP"
         android:layout_alignLeft="@+id/txtCodeP"
-        android:layout_alignStart="@+id/txtCodeP"
-        android:onClick="onInscriptionTerminerClick"/>
+        android:layout_alignStart="@+id/txtCodeP" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Annuler"
-        android:id="@+id/btnAnnuler"
+        android:id="@+id/btnAnnulerInscr"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/txtCodeP"
-        android:layout_alignEnd="@+id/txtCodeP" />
+        android:layout_alignEnd="@+id/txtCodeP"
+        android:onClick="onClick"/>
 
 </RelativeLayout>
