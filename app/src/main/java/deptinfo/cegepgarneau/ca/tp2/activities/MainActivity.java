@@ -14,6 +14,7 @@ import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.DemandesFragments;
+import deptinfo.cegepgarneau.ca.tp2.fragments.ListesPistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.PistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
@@ -77,13 +78,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         int nbBackFragments = getSupportFragmentManager().getBackStackEntryCount();
 
-        Toast.makeText(this, "Fragments: " + nbBackFragments, Toast.LENGTH_LONG).show();
-
         if (nbBackFragments > 0){
             fragmentManager = getSupportFragmentManager();
             String nomDernierFragment = fragmentManager.getBackStackEntryAt(nbBackFragments-1).getName();
             fragmentActu = fragmentManager.findFragmentByTag(nomDernierFragment);
         }
+
+        // Hide le menu.
+        showMenu = false;
+        RefreshTopMenu();
+
         super.onBackPressed();
     }
 
@@ -128,12 +132,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 shouldSwitch = true;
                 break;
             case R.id.nav_pistes:
-                fragment = new PistesFragment();
+                fragment = new ListesPistesFragment();
                 shouldSwitch = true;
                 break;
             case R.id.nav_profil:
                 showMenu = true;
-                fragment = new modProfilFragment();
+                fragment = new ProfilFragment();
                 shouldSwitch = true;
                 break;
             case R.id.nav_settings:
@@ -152,10 +156,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             OpenFragment(fragment);
         }
 
-        // Refresh le menu.
-        invalidateOptionsMenu();
+        // Refresh le menu en haut a droite.
+        RefreshTopMenu();
 
         return true;
+    }
+
+    public void RefreshTopMenu(){
+        invalidateOptionsMenu();
     }
 
     public void onClick(View view)

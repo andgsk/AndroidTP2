@@ -10,16 +10,17 @@ import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
 
 /**
  * Created by Renaud-Charles on 26/02/2016.
  */
-public class ListeDemandesAdapter extends ArrayAdapter<String>{
+public class ListeClassementMembresAdapater extends ArrayAdapter<String>{
 
     private String[] listItems = null;
     private Context context = null;
 
-    public ListeDemandesAdapter(Context context, int layoutRow, int layoutLabel, String[] arrItems) {
+    public ListeClassementMembresAdapater(Context context, int layoutRow, int layoutLabel, String[] arrItems) {
         super(context, layoutRow, layoutLabel, arrItems);
         this.context = context;
         this.listItems = arrItems;
@@ -29,17 +30,16 @@ public class ListeDemandesAdapter extends ArrayAdapter<String>{
 
         View row = super.getView(position, convertView, parent);
 
-        row.findViewById(R.id.txtNomMembre).setOnClickListener(new View.OnClickListener() {
+        TextView txtRang = (TextView)row.findViewById(R.id.txtRang);
+        txtRang.setText("#" + (position + 1));
+
+        row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (v instanceof TextView) {
-                    TextView txtNom = (TextView)v.findViewById(R.id.txtNomMembre);
-
-                    MainActivity activity = (MainActivity) context;
-                    activity.OpenFragment(new ProfilFragment());
-                    Toast.makeText(context, "Profil de " + txtNom.getText(), Toast.LENGTH_LONG).show();
-                }
+                // TODO Auto-generated method stub
+                MainActivity activity = (MainActivity)context;
+                activity.OpenFragment(new ProfilFragment());
+                Toast.makeText(context,"Ouverture Profil",Toast.LENGTH_LONG).show();
 
             }
         });

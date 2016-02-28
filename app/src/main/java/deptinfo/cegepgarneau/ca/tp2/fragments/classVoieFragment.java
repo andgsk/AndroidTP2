@@ -8,18 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.support.v4.app.Fragment;
-import android.widget.ArrayAdapter;
-
 import deptinfo.cegepgarneau.ca.tp2.R;
-import deptinfo.cegepgarneau.ca.tp2.adapters.ListeVoiesAdapter;
+import deptinfo.cegepgarneau.ca.tp2.adapters.ListeClassementMembresAdapater;
 
 /**
  * Created by Andrey on 2016-02-26.
  */
 public class classVoieFragment extends ListFragment {
 
-    private  String[] arrChoix ={"Terreur", "Nocturne", "Tranquile", "Beau Soleil", "Flamante"};
+    private  String[] arrChoix ={"Ross Reid", "Tamara Robbins", "Tasha Riley",
+            "Stella Sanders", "Natasha Powell", "Emily Howard", "Courtney Paul"};
 
     public classVoieFragment() {
     }
@@ -35,7 +33,7 @@ public class classVoieFragment extends ListFragment {
         //Création du fragment à partir du layout
         View v = inflater.inflate(R.layout.fragment_classvoie,container,false);
 
-        this.setListAdapter(new ListeVoiesAdapter(this.getContext(), R.layout.liste_item_pistes, R.id.txtNomPiste, this.arrChoix));
+        this.setListAdapter(new ListeClassementMembresAdapater(this.getContext(), R.layout.liste_item_membres, R.id.txtNomMembre, this.arrChoix));
         return v;
     }
 }

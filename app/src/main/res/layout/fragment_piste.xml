@@ -11,14 +11,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/txtNomPiste" />
+        android:layout_above="@+id/txtNomMembre" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="[piste]"
-        android:id="@+id/txtNomPiste"
+        android:id="@+id/txtNomMembre"
         android:layout_above="@+id/txtDiffPiste"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -32,8 +32,8 @@
         android:text="[difficulté]"
         android:id="@+id/txtDiffPiste"
         android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/txtNomPiste"
-        android:layout_alignStart="@+id/txtNomPiste" />
+        android:layout_alignLeft="@+id/txtNomMembre"
+        android:layout_alignStart="@+id/txtNomMembre" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.adapters.ListeClassementMembresAdapater;
+import deptinfo.cegepgarneau.ca.tp2.adapters.ListePistesAdapter;
 
 /**
  * Created by Andrey on 2016-02-26.
  */
-public class classBlocFragment extends ListFragment {
+public class ListeBlocFragment extends ListFragment {
 
-    private  String[] arrChoix ={"Blanche Benson", "Grace Christensen", "Pauline Gill",
-            "Beverly Page", "Daisy Mcdaniel", "Daisy Mcdaniel", "Adrienne Larson", "Hugh Mendez"};
+    private  String[] arrChoix ={"Bernardino", "La Tornade", "Saint-Esprit", "Chaton", "Antagonie", "Diluvienne"};
 
-    public classBlocFragment() {
+    public ListeBlocFragment() {
     }
 
     @Override
@@ -35,7 +35,7 @@ public class classBlocFragment extends ListFragment {
         //Création du fragment à partir du layout
         View v = inflater.inflate(R.layout.fragment_classbloc,container,false);
 
-        this.setListAdapter(new ListeClassementMembresAdapater(this.getContext(), R.layout.liste_item_membres, R.id.txtNomMembre, this.arrChoix));
+        this.setListAdapter(new ListePistesAdapter(this.getContext(), R.layout.liste_item_pistes, R.id.txtNomPistes, this.arrChoix));
         return v;
     }
 }

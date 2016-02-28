@@ -34,7 +34,7 @@
     <string name="titre_nouvelles">Nouvelles</string>
     <string name="titre_profil">Profil</string>
     <string name="titre_classements">Classements</string>
-    <string name="titre_pistes">Pistes</string>
+    <string name="titre_pistes">Liste des Pistes</string>
     <string name="titre_preferences">Preferences</string>
     <string name="titre_demandes">Invitations</string>
     <string name="titre_mod_profil">Modification Profil</string>
@@ -45,7 +45,6 @@
         <item>Bloc</item>
         <item>Voie</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_nouvelles">Nouvelles</string>
     <string name="membre">Jean-Dujardins</string>
