@@ -2,85 +2,100 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/lblinscr"
-        android:id="@+id/lblInsc"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textSize="60dp" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView4" >
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="@string/nom"
-        android:ems="10"
-        android:id="@+id/txtName"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lblInsc" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Annuler"
-        android:id="@+id/btnAnnuler"
-        android:layout_below="@+id/btnInscContinuer"
-        android:layout_centerHorizontal="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/lblinscr"
+                android:id="@+id/lblInsc"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="60dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Continuer"
-        android:id="@+id/btnInscContinuer"
-        android:layout_below="@+id/txtNumTel"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
-        android:onClick="onInscriptionContinuerClick"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="@string/nom"
+                android:ems="10"
+                android:id="@+id/txtName"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/lblInsc" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/txtMDP"
-        android:layout_below="@+id/txtName"
-        android:layout_centerHorizontal="true"
-        android:text="@string/MotDePasseInsc" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/txtMDP"
+                android:layout_below="@+id/txtName"
+                android:layout_centerHorizontal="true"
+                android:text="@string/MotDePasseInsc" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/txtMDPConf"
-        android:layout_below="@+id/txtMDP"
-        android:layout_alignLeft="@+id/txtMDP"
-        android:layout_alignStart="@+id/txtMDP"
-        android:text="@string/ConfirmationMDP" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/txtMDPConf"
+                android:layout_below="@+id/txtMDP"
+                android:layout_alignLeft="@+id/txtMDP"
+                android:layout_alignStart="@+id/txtMDP"
+                android:text="@string/ConfirmationMDP" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/txtCourriel"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/txtMDPConf"
-        android:layout_alignStart="@+id/txtMDPConf"
-        android:text="@string/Courriel" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/txtCourriel"
+                android:layout_centerVertical="true"
+                android:layout_alignLeft="@+id/txtMDPConf"
+                android:layout_alignStart="@+id/txtMDPConf"
+                android:text="@string/Courriel" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/txtNumTel"
-        android:layout_below="@+id/txtCourriel"
-        android:layout_alignLeft="@+id/txtCourriel"
-        android:layout_alignStart="@+id/txtCourriel"
-        android:text="@string/Tel" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/txtNumTel"
+                android:layout_below="@+id/txtCourriel"
+                android:layout_alignLeft="@+id/txtCourriel"
+                android:layout_alignStart="@+id/txtCourriel"
+                android:text="@string/Tel" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Continuer"
+                android:id="@+id/btnInscContinuer"
+                android:layout_below="@+id/txtNumTel"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="78dp"
+                android:onClick="onInscriptionContinuerClick"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Annuler"
+                android:id="@+id/btnAnnuler"
+                android:onClick="onAnnuler"
+                android:layout_below="@+id/btnInscContinuer"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

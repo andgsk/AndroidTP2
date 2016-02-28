@@ -22,7 +22,9 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.LoginFragment;
 public class LoginActivity extends AppCompatActivity {
 
     // Variables
+    public android.support.v4.app.Fragment fragmentActu;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
+    public FragmentManager fragmentManager = this.getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +32,24 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //Initialisation du fragment
-        LoginFragment loginFragment = new LoginFragment();
+        // Creation du main fragment (news)
+        if (savedInstanceState != null) {
+            //Restore the fragment's instance
+            fragmentActu = getSupportFragmentManager().getFragment(savedInstanceState, "fragmentActu");
+        }
+        else {
+            LoginFragment loginFragment = new LoginFragment();
+            OpenFragment(loginFragment, true);
+        }
+    }
 
-        //Remplacement du contenu du FrameLayout par le fragment
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, loginFragment);
-        fragmentTransaction.commit();
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if (fragmentActu != null) {
+            getSupportFragmentManager().putFragment(outState, "fragmentActu", fragmentActu);
+        }
     }
 
     //Lorsque l'on clique connexion, on ferme lactivite et on
@@ -49,37 +63,56 @@ public class LoginActivity extends AppCompatActivity {
     //Lorsque l'on clique inscription, on change de fragment.
     public void onInscriptionClick(View view){
         InscriptionFragment inscriptionFragment = new InscriptionFragment();
-
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, inscriptionFragment);
-        fragmentTransaction.addToBackStack("inscription");
-        fragmentTransaction.commit();
+        OpenFragment(inscriptionFragment);
     }
 
     public void onInscriptionContinuerClick(View view){
         InscriptionSuiteFragment inscriptionSuiteFragment = new InscriptionSuiteFragment();
-
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, inscriptionSuiteFragment);
-        fragmentTransaction.addToBackStack("inscriptionSuite");
-        fragmentTransaction.commit();
+        OpenFragment(inscriptionSuiteFragment);
     }
 
     public void onInscriptionTerminerClick(View view){
-        //Fragment manager.
-        FragmentManager fragmentManager = this.getSupportFragmentManager();
-
         //On enleve les inscriptions du back stack.
         fragmentManager.popBackStackImmediate(null, fragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-
         //Initialisation du fragment
         LoginFragment loginFragment = new LoginFragment();
+        OpenFragment(loginFragment, true);
+    }
 
-        //Remplacement du contenu du FrameLayout par le fragment
+    // Attraper les fragments du back press.
+    @Override
+    public void onBackPressed() {
+
+        int nbBackFragments = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (nbBackFragments > 0){
+            fragmentManager = getSupportFragmentManager();
+            String nomDernierFragment = fragmentManager.getBackStackEntryAt(nbBackFragments-1).getName();
+            fragmentActu = fragmentManager.findFragmentByTag(nomDernierFragment);
+        }
+
+        super.onBackPressed();
+    }
+
+    public void onAnnuler(View view){
+        onBackPressed();
+    }
+
+    // Fonction qui ouvre un fragment, shouldSkipBack est true si on skip le back stack.
+    public void OpenFragment(android.support.v4.app.Fragment fragment, boolean shouldSkipBack) {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, loginFragment);
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+
+        if (!shouldSkipBack)
+            fragmentTransaction.addToBackStack(fragment.toString());
+
         fragmentTransaction.commit();
 
+        fragmentActu = fragment;
+    }
+
+    public void OpenFragment(android.support.v4.app.Fragment fragment){
+        OpenFragment(fragment, false);
     }
 }
