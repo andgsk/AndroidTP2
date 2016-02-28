@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public NavigationView mNavigationView;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
     public boolean showMenu = false;
+    public Fragment fragmentActu;
 
 
     @Override
@@ -57,12 +58,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView.setNavigationItemSelectedListener(this);
 
         // Creation du main fragment (news)
-        NouvellesFragment nouvellesFragment = new NouvellesFragment();
+        if (savedInstanceState != null) {
+            //Restore the fragment's instance
+            fragmentActu = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
+        }
+        else {
+            NouvellesFragment nouvellesFragment = new NouvellesFragment();
 
-        //Remplacement du contenu du FrameLayout par le fragment
-        fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, nouvellesFragment);
-        fragmentTransaction.commit();
+            // On ouvre la nouvelle, en skippant le backstack.
+            OpenFragment(nouvellesFragment, true);
+        }
     }
 
     @Override
@@ -72,9 +77,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return showMenu;
     }
 
-    public void inflateMenu(){
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
+        getSupportFragmentManager().putFragment(outState, "fragmentActu", fragmentActu);
     }
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -162,13 +171,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void OpenFragment(Fragment fragment){    //Remplacement du contenu du FrameLayout par le fragment
+    // Fonction qui ouvre un fragment, shouldSkipBack est true si on skip le back stack.
+    public void OpenFragment(Fragment fragment, boolean shouldSkipBack){
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(fragment.toString());
+
+        if (!shouldSkipBack)
+            fragmentTransaction.addToBackStack(fragment.toString());
+
         fragmentTransaction.commit();
 
+        fragmentActu = fragment;
         mDrawerLayout.closeDrawers();
+    }
+
+    public void OpenFragment(Fragment fragment){
+        OpenFragment(fragment, false);
     }
 
 }
