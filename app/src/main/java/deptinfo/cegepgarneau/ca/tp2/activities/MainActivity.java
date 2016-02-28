@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public DrawerLayout mDrawerLayout;
     public NavigationView mNavigationView;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
+    public android.support.v4.app.FragmentManager fragmentManager;
     public boolean showMenu = false;
     public Fragment fragmentActu;
 
@@ -65,9 +66,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else {
             NouvellesFragment nouvellesFragment = new NouvellesFragment();
 
-            // On ouvre la nouvelle, en skippant le backstack.
+            // On ouvre la nouvelle, en skippant le backstack. Parce que c'est le premier.
             OpenFragment(nouvellesFragment, true);
         }
+    }
+
+    // Attraper les fragments du back press.
+    @Override
+    public void onBackPressed() {
+
+        int nbBackFragments = getSupportFragmentManager().getBackStackEntryCount();
+
+        Toast.makeText(this, "Fragments: " + nbBackFragments, Toast.LENGTH_LONG).show();
+
+        if (nbBackFragments > 0){
+            fragmentManager = getSupportFragmentManager();
+            String nomDernierFragment = fragmentManager.getBackStackEntryAt(nbBackFragments-1).getName();
+            fragmentActu = fragmentManager.findFragmentByTag(nomDernierFragment);
+        }
+        super.onBackPressed();
     }
 
     @Override
