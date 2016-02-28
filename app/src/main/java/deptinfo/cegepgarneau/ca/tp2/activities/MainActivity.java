@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-        mToolbar, R.string.txt_nav_header, R.string.txt_nav_header);
+        mToolbar, R.string.app_name, R.string.app_name);
 
         mDrawerLayout.setDrawerListener(toggle);
 
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         fragmentActu = fragment;
         RefreshTopMenu();
-        
+
         mDrawerLayout.closeDrawers();
     }
 
