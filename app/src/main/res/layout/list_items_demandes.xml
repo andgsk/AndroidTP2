@@ -13,12 +13,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/imgPiste"
-            android:src="@android:drawable/ic_menu_add" />
+            android:src="@drawable/ic_people_black_24dp"
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_gravity="center_vertical"
             android:text="@string/membre"
             android:id="@+id/txtNomMembre"
@@ -27,6 +28,7 @@
             android:layout_toEndOf="@+id/imgPiste" />
 
         <Button
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,8 +37,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_column="4"
-            android:onClick="onAcceptDemande"/>
+            android:layout_column="4"/>
 
         <Button
             style="?android:attr/buttonStyleSmall"
@@ -45,8 +46,7 @@
             android:layout_gravity="center"
             android:text="Refuser"
             android:id="@+id/btnRefuser"
-            android:layout_column="5"
-            android:onClick="onRefuserDemande"/>
+            android:layout_column="5"/>
 
     </TableRow>
 

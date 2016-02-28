@@ -29,22 +29,6 @@ public class ListeNouvellesAdapter extends ArrayAdapter<String>{
 
         View row = super.getView(position, convertView, parent);
 
-        //TextView txtRang = (TextView)row.findViewById(R.id.txtRang);
-        //txtRang.setText("#" + (position + 1));
-
-        /*
-        row.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                MainActivity activity = (MainActivity)context;
-                activity.OpenFragment(new ProfilFragment());
-                Toast.makeText(context,"Ouverture Profil",Toast.LENGTH_LONG).show();
-
-            }
-        });
-        */
-
         return (row);
     }
 

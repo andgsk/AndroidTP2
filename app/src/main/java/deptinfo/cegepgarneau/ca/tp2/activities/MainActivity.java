@@ -159,8 +159,6 @@ return true;
         // Fonction qui gere.
         int id = item.getItemId();
 
-        Toast.makeText(this, item.getTitle() + " selected!", Toast.LENGTH_LONG).show();
-
         boolean shouldSwitch = false;
         Fragment fragment = new NouvellesFragment();
 

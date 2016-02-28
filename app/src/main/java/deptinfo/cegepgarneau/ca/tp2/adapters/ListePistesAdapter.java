@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
 
@@ -30,10 +32,11 @@ public class ListePistesAdapter extends ArrayAdapter<String>{
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
+                
                 MainActivity activity = (MainActivity)context;
                 activity.OpenFragment(new pisteFragment());
-                Toast.makeText(context,"Selection de ",Toast.LENGTH_LONG).show();
+                TextView txt = (TextView)v.findViewById(R.id.txtNomPistes);
+                Toast.makeText(context,"Selection de " + txt.getText(),Toast.LENGTH_LONG).show();
 
             }
         });
