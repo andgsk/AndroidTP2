@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
-import deptinfo.cegepgarneau.ca.tp2.adapters.ListeClassementMembresAdapater;
+import deptinfo.cegepgarneau.ca.tp2.adapters.ListeClassementMembresAdapter;
 
 /**
  * Created by Andrey on 2016-02-26.
@@ -33,7 +33,7 @@ public class classVoieFragment extends ListFragment {
         //Création du fragment à partir du layout
         View v = inflater.inflate(R.layout.fragment_classvoie,container,false);
 
-        this.setListAdapter(new ListeClassementMembresAdapater(this.getContext(), R.layout.liste_item_membres, R.id.txtNomMembre, this.arrChoix));
+        this.setListAdapter(new ListeClassementMembresAdapter(this.getContext(), R.layout.liste_item_membres, R.id.txtNomMembre, this.arrChoix));
         return v;
     }
 }

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
-import deptinfo.cegepgarneau.ca.tp2.adapters.ListeClassementMembresAdapater;
 import deptinfo.cegepgarneau.ca.tp2.adapters.ListePistesAdapter;
 
 /**

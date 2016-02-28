@@ -15,12 +15,12 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
 /**
  * Created by Renaud-Charles on 26/02/2016.
  */
-public class ListeClassementMembresAdapater extends ArrayAdapter<String>{
+public class ListeClassementMembresAdapter extends ArrayAdapter<String>{
 
     private String[] listItems = null;
     private Context context = null;
 
-    public ListeClassementMembresAdapater(Context context, int layoutRow, int layoutLabel, String[] arrItems) {
+    public ListeClassementMembresAdapter(Context context, int layoutRow, int layoutLabel, String[] arrItems) {
         super(context, layoutRow, layoutLabel, arrItems);
         this.context = context;
         this.listItems = arrItems;
