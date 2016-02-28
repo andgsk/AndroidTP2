@@ -19,6 +19,7 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.ListesPistesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.modAdresseFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modLoginMdpFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ajoutReussiteFragment;
@@ -134,6 +135,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new addPisteFragment();
                 shouldSwitch = true;
                 break;
+            case R.id.modifier_adresse:
+                fragment = new modAdresseFragment();
+                shouldSwitch = true;
+                break;
 
         }
 
@@ -229,14 +234,17 @@ return true;
                 shouldChange = true;
                 break;
             case R.id.btnAddPic:
-
                 Toast.makeText(this, "Image ajoutée, lol :D joke", Toast.LENGTH_LONG).show();
-
                 break;
             case R.id.btnsavemodpiste:
                 fragment = new ListesPistesFragment();
                 shouldChange = true;
                 break;
+            case R.id.btnSaveAdresse:
+                fragment = new ProfilFragment();
+                shouldChange = true;
+                break;
+
         }
         if (shouldChange == true) {
             OpenFragment(fragment);
