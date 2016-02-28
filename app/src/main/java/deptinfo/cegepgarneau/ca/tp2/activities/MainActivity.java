@@ -23,7 +23,7 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.modLoginMdpFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ajoutReussiteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.modPisteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.critiquerFragment;
-import deptinfo.cegepgarneau.ca.tp2.fragments.pisteFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.PisteFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-        mToolbar, R.string.txt_nav_header, R.string.txt_nav_header);
+        mToolbar, R.string.app_name, R.string.app_name);
 
         mDrawerLayout.setDrawerListener(toggle);
 
