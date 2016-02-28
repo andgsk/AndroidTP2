@@ -45,8 +45,6 @@ public class ClassementsFragment extends Fragment {
         //Association du TabLayout au ViewPager.
         tabLayout.setupWithViewPager(viewPager);
 
-
-
         return  view;
     }
 

@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Creation du main fragment (news)
         if (savedInstanceState != null) {
             //Restore the fragment's instance
-            fragmentActu = getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
+            fragmentActu = getSupportFragmentManager().getFragment(savedInstanceState, "fragmentActu");
         }
         else {
             NouvellesFragment nouvellesFragment = new NouvellesFragment();
@@ -81,7 +81,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        getSupportFragmentManager().putFragment(outState, "fragmentActu", fragmentActu);
+        if (fragmentActu != null) {
+            getSupportFragmentManager().putFragment(outState, "fragmentActu", fragmentActu);
+        }
     }
 
 
