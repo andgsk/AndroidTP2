@@ -1,7 +1,7 @@
 package deptinfo.cegepgarneau.ca.tp2.activities;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.annotation.Nullable;
@@ -67,12 +67,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onInscriptionTerminerClick(View view){
         //Fragment manager.
-        FragmentManager fragmentManager = this.getFragmentManager();
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
 
         //On enleve les inscriptions du back stack.
         fragmentManager.popBackStackImmediate(null, fragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-        /*
+
         //Initialisation du fragment
         LoginFragment loginFragment = new LoginFragment();
 
@@ -80,6 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, loginFragment);
         fragmentTransaction.commit();
-        */
+
     }
 }

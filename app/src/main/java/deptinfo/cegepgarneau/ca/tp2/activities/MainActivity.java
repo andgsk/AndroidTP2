@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         if (fragmentActu instanceof ProfilFragment) {
-            getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+            getMenuInflater().inflate(R.menu.profil_menu, menu);
             return true;
         }
         else if (fragmentActu instanceof PisteFragment) {
