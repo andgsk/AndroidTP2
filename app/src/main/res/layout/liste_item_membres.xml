@@ -12,7 +12,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:id="@+id/imgPiste"
+            android:id="@+id/img_notification"
             android:src="@mipmap/ic_profile" />
 
         <TextView
@@ -21,10 +21,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_gravity="center_vertical"
             android:text="@string/membre"
-            android:id="@+id/txtNomMembre"
+            android:id="@+id/txtTitreNotifications"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imgPiste"
-            android:layout_toEndOf="@+id/imgPiste"
+            android:layout_toRightOf="@+id/img_notification"
+            android:layout_toEndOf="@+id/img_notification"
             android:singleLine="false" />
 
         <TextView

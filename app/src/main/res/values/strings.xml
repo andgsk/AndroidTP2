@@ -32,6 +32,7 @@
     <string name="voie">Voie</string>
     <string name="nom_app">Escalade Haut</string>
     <string name="titre_nouvelles">Nouvelles</string>
+    <string name="titre_notifications">Notifications</string>
     <string name="titre_profil">Profil</string>
     <string name="titre_classements">Classements</string>
     <string name="titre_pistes">Liste des Pistes</string>
@@ -40,6 +41,8 @@
     <string name="titre_mod_profil">Modification Profil</string>
     <string name="txt_bloc">Bloc</string>
     <string name="txt_voie">Voie</string>
+    <string name="txt_nom_notification">Notification</string>
+    <string name="txt_desc_notification">Description de la notification haha peut-etre ce texte sera trop long, mais cest effectivement le but de la choses voir comment les choses se placent dans la vie.</string>
 
     <string-array name="tabs">
         <item>Bloc</item>
@@ -69,4 +72,5 @@
     <string name="confirmationLogin">Confirmer login</string>
     <string name="txtTitreNouvelle">Titre Nouvelle</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

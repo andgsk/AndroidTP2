@@ -29,12 +29,12 @@ public class ListeDemandesAdapter extends ArrayAdapter<String>{
 
         View row = super.getView(position, convertView, parent);
 
-        row.findViewById(R.id.txtNomMembre).setOnClickListener(new View.OnClickListener() {
+        row.findViewById(R.id.txtTitreNotifications).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (v instanceof TextView) {
-                    TextView txtNom = (TextView)v.findViewById(R.id.txtNomMembre);
+                    TextView txtNom = (TextView)v.findViewById(R.id.txtTitreNotifications);
 
                     MainActivity activity = (MainActivity) context;
                     activity.OpenFragment(new ProfilFragment());

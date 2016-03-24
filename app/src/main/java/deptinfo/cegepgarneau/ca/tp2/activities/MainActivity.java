@@ -16,6 +16,7 @@ import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.DemandesFragments;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ListesPistesFragment;
+import deptinfo.cegepgarneau.ca.tp2.fragments.NotificationsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.NouvellesFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.SettingsFragment;
@@ -68,10 +69,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentActu = getSupportFragmentManager().getFragment(savedInstanceState, "fragmentActu");
         }
         else {
-            NouvellesFragment nouvellesFragment = new NouvellesFragment();
+            NotificationsFragment notificationFragment = new NotificationsFragment();
 
             // On ouvre la nouvelle, en skippant le backstack. Parce que c'est le premier.
-            OpenFragment(nouvellesFragment, true);
+            OpenFragment(notificationFragment, true);
         }
     }
 
@@ -169,8 +170,8 @@ return true;
 
         switch(id)
         {
-            case R.id.nav_news:
-                fragment = new NouvellesFragment();
+            case R.id.nav_notifications:
+                fragment = new NotificationsFragment();
                 shouldSwitch = true;
                 break;
             case R.id.nav_classements:

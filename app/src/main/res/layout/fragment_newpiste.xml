@@ -8,7 +8,7 @@
         android:inputType="textPersonName"
         android:text="@string/nomPiste"
         android:ems="10"
-        android:id="@+id/txtNomMembre"
+        android:id="@+id/txtTitreNotifications"
         android:layout_marginTop="25dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
@@ -21,10 +21,10 @@
         android:layout_height="wrap_content"
         android:text="@string/voie"
         android:id="@+id/chkVoie"
-        android:layout_alignRight="@+id/txtNomMembre"
-        android:layout_alignEnd="@+id/txtNomMembre"
+        android:layout_alignRight="@+id/txtTitreNotifications"
+        android:layout_alignEnd="@+id/txtTitreNotifications"
         android:checked="false"
-        android:layout_below="@+id/txtNomMembre"
+        android:layout_below="@+id/txtTitreNotifications"
         android:layout_alignLeft="@+id/btnAddImg"
         android:layout_alignStart="@+id/btnAddImg" />
 

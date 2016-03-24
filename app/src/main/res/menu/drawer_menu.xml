@@ -2,25 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_news"
+            android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_fiber_new_black_24dp"
-            android:title="@string/titre_nouvelles" />
+            android:title="Notifications"
+            />
         <item
             android:id="@+id/nav_classements"
             android:icon="@drawable/ic_equalizer_black_24dp"
-            android:title="@string/titre_classements" />
+            android:title="@string/titre_classements"
+            />
         <item
             android:id="@+id/nav_pistes"
             android:icon="@drawable/ic_pets_black_24dp"
-            android:title="@string/titre_pistes" />
+            android:title="@string/titre_pistes"
+            />
         <item
             android:id="@+id/nav_profil"
             android:icon="@drawable/ic_contacts_black_24dp"
-            android:title="@string/titre_profil" />
+            android:title="@string/titre_profil"
+            />
         <item
             android:id="@+id/nav_demandes"
             android:icon="@drawable/ic_people_black_24dp"
-            android:title="@string/titre_demandes" />
+            android:title="@string/titre_demandes"
+            />
 
     </group>
     <group android:checkableBehavior="single">
