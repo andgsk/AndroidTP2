@@ -19,6 +19,8 @@ public class DemandesFragments extends ListFragment {
     private  String[] arrChoix ={"Simon Jean", "Samuel Denis", "Lorel Tracy",
             "Vanessa Dugris", "Maurice Jolie"};
 
+    // TODO AJOUTER LES USERS ICI, FAIRE CA EN REVENANT DE LA JOB.
+
     // Constructeur
     public DemandesFragments(){
 

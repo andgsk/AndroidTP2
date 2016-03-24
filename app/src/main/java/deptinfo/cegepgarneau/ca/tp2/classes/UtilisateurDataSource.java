@@ -2,8 +2,12 @@ package deptinfo.cegepgarneau.ca.tp2.classes;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Renaud-Charles on 20/03/2016.
@@ -52,6 +56,46 @@ public class UtilisateurDataSource {
         m_db.close();
     }
 
+    // Cursor vers un utilisateur.
+    private Utilisateur CursorToUser(Cursor c){
+        Utilisateur user = new Utilisateur(
+                c.getString(IDX_USERNAME),
+                c.getString(IDX_PASSWORD),
+                c.getInt(IDX_USERTYPE));
+        return user;
+    }
+
+    // Permet de recuperer un utilisateur par son ID.
+    public Utilisateur GetUtilisateurByID(int id){
+        Utilisateur user = null;
+        String[] args = new String[]{String.valueOf(id)};
+
+        Cursor c = m_db.query(TABLE_NAME, null, COL_ID + "=?", args, null, null, null);
+        c.moveToFirst();
+
+        if (!c.isAfterLast()){
+            user = CursorToUser(c);
+        }
+
+        return user;
+    }
+
+    // Permet de recuperer tout les users.
+    public List<Utilisateur> GetAllUtilisateurs(){
+        List<Utilisateur> list = new ArrayList<Utilisateur>();
+
+        Cursor c = m_db.query(TABLE_NAME, null, null, null, null, null, null);
+        c.moveToFirst();
+
+        while (!c.isAfterLast()){
+            Utilisateur user = CursorToUser(c);
+            list.add(user);
+            c.moveToNext();
+        }
+
+        return list;
+    }
+
     // Fonction qui ajoute un nouvelle utilisateur dans la base de donnees.
     public int InsertUser(Utilisateur user){
         ContentValues row = utilisateurToContentValue(user);
@@ -95,7 +139,7 @@ public class UtilisateurDataSource {
                     + COL_USERNAME + " text, "
                     + COL_EMAIL + " text, "
                     + COL_ADRESSE + " text, "
-                    + COL_TELEPHONE + " integer)");
+                    + COL_TELEPHONE + " text)");
         }
 
         @Override

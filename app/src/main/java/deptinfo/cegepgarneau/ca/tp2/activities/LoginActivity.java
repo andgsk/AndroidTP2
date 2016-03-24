@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
+import deptinfo.cegepgarneau.ca.tp2.classes.Utilisateur;
 import deptinfo.cegepgarneau.ca.tp2.fragments.InscriptionFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.InscriptionSuiteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.LoginFragment;
@@ -115,4 +116,14 @@ public class LoginActivity extends AppCompatActivity {
     public void OpenFragment(android.support.v4.app.Fragment fragment){
         OpenFragment(fragment, false);
     }
+
+    // Fonction utilise pour creer des utilisateurs aleatoire.
+    public void CreateDefaultUsers(){
+        Utilisateur user1 = new Utilisateur("Andre", "Andre", Utilisateur.TYPE_GRIMPEUR);
+        Utilisateur user2 = new Utilisateur("Marc", "Marc", Utilisateur.TYPE_GRIMPEUR);
+        Utilisateur user3 = new Utilisateur("Marie", "Marie", Utilisateur.TYPE_GRIMPEUR);
+        Utilisateur user4 = new Utilisateur("Simone", "Simone", Utilisateur.TYPE_GRIMPEUR);
+        Utilisateur user5 = new Utilisateur("Eve", "Eve", Utilisateur.TYPE_OUVREUR);
+    };
 }
+

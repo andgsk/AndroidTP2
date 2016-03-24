@@ -3,17 +3,33 @@ package deptinfo.cegepgarneau.ca.tp2.classes;
 /**
  * Created by Renaud-Charles on 20/03/2016.
  */
+
 public class Utilisateur {
+
+    // Variables
     public final int    ID_UNDEFINED = -1;
     public int          id = ID_UNDEFINED;
-    public int          typeCompte;
+
+    // Variables qui varies.
     public String       username;
     public String       password;
-    public String       prenom;
-    public String       nom;
-    public String       email;
-    public String       adresse;
-    public int          noTelephone;
+    public int          typeCompte;
+    public String       prenom = "n/a";
+    public String       nom = "n/a";
+    public String       email = "n/a";
+    public String       adresse = "n/a";
+    public String       noTelephone = "555-123-4567";
+
+    // Type de comptes
+    public static final int TYPE_GRIMPEUR = 0;
+    public static final int TYPE_OUVREUR = 1;
+
+    // Constructeur
+    public Utilisateur(String username, String password, int typeCompte){
+        this.username = username;
+        this.password = password;
+        this.typeCompte = typeCompte;
+    }
 
     // Index
     public int GetID(){return this.id;}
@@ -48,6 +64,6 @@ public class Utilisateur {
     public void SetAdresse(String adresse){this.adresse = adresse;}
 
     // Numero de telephone
-    public int GetNoTelephone(){return this.noTelephone;}
-    public void SetNoTelephone(int noTelephone){this.noTelephone = noTelephone;}
+    public String GetNoTelephone(){return this.noTelephone;}
+    public void SetNoTelephone(String noTelephone){this.noTelephone = noTelephone;}
 }
