@@ -68,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //Lorsque l'on clique inscription, on change de fragment.
     public void onInscriptionClick(View view){
+        CreateDefaultUsers();
         InscriptionFragment inscriptionFragment = new InscriptionFragment();
         OpenFragment(inscriptionFragment);
     }
@@ -132,7 +133,10 @@ public class LoginActivity extends AppCompatActivity {
         list.add(new Utilisateur("Eve", "Eve", Utilisateur.TYPE_OUVREUR));
 
         m_utilisateurDataSource.open();
-
+        //for (Utilisateur user : list){
+            //m_utilisateurDataSource.InsertUser(user);
+        //}
+        m_utilisateurDataSource.close();
     };
 }
 
