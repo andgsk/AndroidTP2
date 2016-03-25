@@ -12,8 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.classes.Utilisateur;
+import deptinfo.cegepgarneau.ca.tp2.classes.UtilisateurDataSource;
 import deptinfo.cegepgarneau.ca.tp2.fragments.InscriptionFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.InscriptionSuiteFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.LoginFragment;
@@ -23,6 +27,7 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.LoginFragment;
 public class LoginActivity extends AppCompatActivity {
 
     // Variables
+    public UtilisateurDataSource m_utilisateurDataSource;
     public android.support.v4.app.Fragment fragmentActu;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
     public FragmentManager fragmentManager = this.getSupportFragmentManager();
@@ -119,11 +124,15 @@ public class LoginActivity extends AppCompatActivity {
 
     // Fonction utilise pour creer des utilisateurs aleatoire.
     public void CreateDefaultUsers(){
-        Utilisateur user1 = new Utilisateur("Andre", "Andre", Utilisateur.TYPE_GRIMPEUR);
-        Utilisateur user2 = new Utilisateur("Marc", "Marc", Utilisateur.TYPE_GRIMPEUR);
-        Utilisateur user3 = new Utilisateur("Marie", "Marie", Utilisateur.TYPE_GRIMPEUR);
-        Utilisateur user4 = new Utilisateur("Simone", "Simone", Utilisateur.TYPE_GRIMPEUR);
-        Utilisateur user5 = new Utilisateur("Eve", "Eve", Utilisateur.TYPE_OUVREUR);
+        List<Utilisateur> list = new ArrayList<Utilisateur>();
+        list.add(new Utilisateur("Andre", "Andre", Utilisateur.TYPE_GRIMPEUR));
+        list.add(new Utilisateur("Marc", "Marc", Utilisateur.TYPE_GRIMPEUR));
+        list.add(new Utilisateur("Marie", "Marie", Utilisateur.TYPE_GRIMPEUR));
+        list.add(new Utilisateur("Simone", "Simone", Utilisateur.TYPE_GRIMPEUR));
+        list.add(new Utilisateur("Eve", "Eve", Utilisateur.TYPE_OUVREUR));
+
+        m_utilisateurDataSource.open();
+
     };
 }
 

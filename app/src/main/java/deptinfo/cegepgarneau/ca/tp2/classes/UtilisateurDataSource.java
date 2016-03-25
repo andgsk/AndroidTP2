@@ -80,6 +80,22 @@ public class UtilisateurDataSource {
         return user;
     }
 
+    // Permet de recuperer un utilisateur par son ID.
+    public Utilisateur GetUtilisateurByUsername(String username){
+        Utilisateur user = null;
+        String[] args = new String[]{username};
+
+        Cursor c = m_db.query(TABLE_NAME, null, COL_USERNAME + "=?", args, null, null, null);
+        // c.moveToFirst()
+        // !c.isAfterLast()
+
+        if (c.moveToFirst()){
+            user = CursorToUser(c);
+        }
+
+        return user;
+    }
+
     // Permet de recuperer tout les users.
     public List<Utilisateur> GetAllUtilisateurs(){
         List<Utilisateur> list = new ArrayList<Utilisateur>();
@@ -98,10 +114,17 @@ public class UtilisateurDataSource {
 
     // Fonction qui ajoute un nouvelle utilisateur dans la base de donnees.
     public int InsertUser(Utilisateur user){
-        ContentValues row = utilisateurToContentValue(user);
-        int newId = (int) m_db.insert(TABLE_NAME, null, row);
-        user.SetID(newId);
-        return newId;
+
+        // S'assurer que l'utilisateur n'existe pas.
+        if (GetUtilisateurByUsername(user.GetUsername()) == null){
+
+            ContentValues row = utilisateurToContentValue(user);
+            int newId = (int) m_db.insert(TABLE_NAME, null, row);
+            user.SetID(newId);
+            return newId;
+        }
+        else
+            return Utilisateur.ID_UNDEFINED;
     }
 
     // Fonction qui convertie les valeurs user en content value pour la base de donnees.

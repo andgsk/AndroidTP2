@@ -7,18 +7,18 @@ package deptinfo.cegepgarneau.ca.tp2.classes;
 public class Utilisateur {
 
     // Variables
-    public final int    ID_UNDEFINED = -1;
-    public int          id = ID_UNDEFINED;
+    public static final int ID_UNDEFINED = -1;
+    public int              id = ID_UNDEFINED;
 
     // Variables qui varies.
-    public String       username;
-    public String       password;
-    public int          typeCompte;
-    public String       prenom = "n/a";
-    public String       nom = "n/a";
-    public String       email = "n/a";
-    public String       adresse = "n/a";
-    public String       noTelephone = "555-123-4567";
+    public String           username;
+    public String           password;
+    public int              typeCompte;
+    public String           prenom = "n/a";
+    public String           nom = "n/a";
+    public String           email = "n/a";
+    public String           adresse = "n/a";
+    public String           noTelephone = "555-123-4567";
 
     // Type de comptes
     public static final int TYPE_GRIMPEUR = 0;
