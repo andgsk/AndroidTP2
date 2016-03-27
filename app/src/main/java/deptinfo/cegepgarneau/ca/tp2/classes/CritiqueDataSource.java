@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * Created by Renaud-Charles on 20/03/2016.
  */
-public class UtilisateurDataSource {
+public class CritiqueDataSource {
 
     // PROPRIETEES DE LA TABLE
     private final static int        DB_VERSION = 1;
-    private final static String     TABLE_NAME = "users";
+    private final static String     TABLE_NAME = "pistes";
 
     private final static String     COL_ID = "_id";
     private final static String     COL_USERNAME = "username";
@@ -42,7 +42,7 @@ public class UtilisateurDataSource {
     private SQLiteDatabase          m_db;
 
     // CONSTRUCTEUR
-    public UtilisateurDataSource(Context context){
+    public CritiqueDataSource(Context context){
         m_dbHelper = new UtilisateurDBHelper(context);
     }
 
@@ -160,7 +160,7 @@ public class UtilisateurDataSource {
 
     private static class UtilisateurDBHelper extends SQLiteOpenHelper{
         public UtilisateurDBHelper(Context context){
-            super(context, "users.sqlite", null, DB_VERSION);
+            super(context, "pistes.sqlite", null, DB_VERSION);
         }
 
         @Override

@@ -22,7 +22,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_gravity="center_vertical"
             android:text="@string/membre"
-            android:id="@+id/txtTitreNotifications"
+            android:id="@+id/txtPrenomNom"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/img_notification"
             android:layout_toEndOf="@+id/img_notification" />

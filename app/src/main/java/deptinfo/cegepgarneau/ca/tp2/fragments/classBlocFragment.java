@@ -35,7 +35,7 @@ public class classBlocFragment extends ListFragment {
         //Création du fragment à partir du layout
         View v = inflater.inflate(R.layout.fragment_classbloc,container,false);
 
-        this.setListAdapter(new ListeClassementMembresAdapter(this.getContext(), R.layout.liste_item_membres, R.id.txtTitreNotifications, this.arrChoix));
+        this.setListAdapter(new ListeClassementMembresAdapter(this.getContext(), R.layout.liste_item_membres, R.id.txtPrenomNom, this.arrChoix));
         return v;
     }
 }

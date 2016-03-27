@@ -33,7 +33,7 @@ public class DemandesFragments extends ListFragment {
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_demandes);
 
-        this.setListAdapter(new ListeDemandesAdapter(this.getContext(), R.layout.list_items_demandes, R.id.txtTitreNotifications, this.arrChoix));
+        this.setListAdapter(new ListeDemandesAdapter(this.getContext(), R.layout.list_items_demandes, R.id.txtPrenomNom, this.arrChoix));
         return  view;
     }
 

@@ -1,5 +1,6 @@
 package deptinfo.cegepgarneau.ca.tp2.activities;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import deptinfo.cegepgarneau.ca.tp2.R;
+import deptinfo.cegepgarneau.ca.tp2.classes.Utilisateur;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.DemandesFragments;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ListesPistesFragment;
@@ -32,6 +34,7 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.addPisteFragment;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Variables
+    public Utilisateur m_user;
     public Toolbar mToolbar;
     public DrawerLayout mDrawerLayout;
     public NavigationView mNavigationView;
@@ -45,6 +48,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // On va cherche l'utilisateur principale. S'il n'existe pas, on retourne au login.
+        Intent intent = getIntent();
+        m_user = (Utilisateur) intent.getSerializableExtra("Utilisateur");
+        if (m_user == null){
+            Intent loginIntent = new Intent(this, LoginActivity.class);
+            this.finish(); // Plus besoin de cette activite.
+            startActivity(loginIntent);
+            return;
+        }
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);

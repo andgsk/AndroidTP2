@@ -1,10 +1,16 @@
 package deptinfo.cegepgarneau.ca.tp2.classes;
 
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * Created by Renaud-Charles on 20/03/2016.
  */
 
-public class Utilisateur {
+public class Utilisateur implements Serializable{
 
     // Variables
     public static final int ID_UNDEFINED = -1;

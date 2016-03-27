@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Renaud-Charles on 20/03/2016.
  */
 
-public class Piste implements Serializable{
+public class Notification implements Serializable{
 
     // Variables
     public static final int ID_UNDEFINED = -1;
@@ -27,7 +27,7 @@ public class Piste implements Serializable{
     public static final int TYPE_OUVREUR = 1;
 
     // Constructeur
-    public Piste(String username, String password, int typeCompte){
+    public Notification(String username, String password, int typeCompte){
         this.username = username;
         this.password = password;
         this.typeCompte = typeCompte;

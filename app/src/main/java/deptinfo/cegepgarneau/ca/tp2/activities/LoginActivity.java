@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,7 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.LoginFragment;
 public class LoginActivity extends AppCompatActivity {
 
     // Variables
+    private Utilisateur m_user = null;
     public UtilisateurDataSource m_utilisateurDataSource;
     public android.support.v4.app.Fragment fragmentActu;
     public android.support.v4.app.FragmentTransaction fragmentTransaction;
@@ -34,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        m_utilisateurDataSource = new UtilisateurDataSource(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -61,9 +65,23 @@ public class LoginActivity extends AppCompatActivity {
     //Lorsque l'on clique connexion, on ferme lactivite et on
     //entre dans l'app.
     public void onConnexionClick(View view){
-        Intent intent = new Intent(this, MainActivity.class);
-        this.finish(); // Plus besoin de cette activite.
-        startActivity(intent);
+
+        EditText loginView = (EditText) findViewById(R.id.login);
+        EditText mdpView = (EditText) findViewById(R.id.mdp);
+
+        m_utilisateurDataSource.open();
+        m_user = m_utilisateurDataSource.GetUtilisateur(loginView.getText().toString(), mdpView.getText().toString());
+        m_utilisateurDataSource.close();
+
+        if (m_user != null) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("Utilisateur", m_user);
+            this.finish(); // Plus besoin de cette activite.
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this, "Mauvais utilisateur/mot de passe.", Toast.LENGTH_LONG).show();
+        }
     }
 
     //Lorsque l'on clique inscription, on change de fragment.
@@ -125,17 +143,19 @@ public class LoginActivity extends AppCompatActivity {
 
     // Fonction utilise pour creer des utilisateurs aleatoire.
     public void CreateDefaultUsers(){
-        List<Utilisateur> list = new ArrayList<Utilisateur>();
-        list.add(new Utilisateur("Andre", "Andre", Utilisateur.TYPE_GRIMPEUR));
-        list.add(new Utilisateur("Marc", "Marc", Utilisateur.TYPE_GRIMPEUR));
-        list.add(new Utilisateur("Marie", "Marie", Utilisateur.TYPE_GRIMPEUR));
-        list.add(new Utilisateur("Simone", "Simone", Utilisateur.TYPE_GRIMPEUR));
-        list.add(new Utilisateur("Eve", "Eve", Utilisateur.TYPE_OUVREUR));
-
         m_utilisateurDataSource.open();
-        //for (Utilisateur user : list){
-            //m_utilisateurDataSource.InsertUser(user);
-        //}
+        m_utilisateurDataSource.InsertUser(new Utilisateur("Andre", "Andre", Utilisateur.TYPE_GRIMPEUR));
+        m_utilisateurDataSource.InsertUser(new Utilisateur("Marc", "Marc", Utilisateur.TYPE_GRIMPEUR));
+        m_utilisateurDataSource.InsertUser(new Utilisateur("Marie", "Marie", Utilisateur.TYPE_GRIMPEUR));
+        m_utilisateurDataSource.InsertUser(new Utilisateur("Simone", "Simone", Utilisateur.TYPE_GRIMPEUR));
+        m_utilisateurDataSource.InsertUser(new Utilisateur("Eve", "Eve", Utilisateur.TYPE_OUVREUR));
+
+        List<Utilisateur> users = m_utilisateurDataSource.GetAllUtilisateurs();
+        Toast.makeText(this, "# " + users.size(), Toast.LENGTH_SHORT).show();
+        for(int i = 0; i < users.size(); i++) {
+            Toast.makeText(this, users.get(i).GetUsername(), Toast.LENGTH_SHORT).show();
+            //System.out.print(users.get(i).GetNom() + " : " + users.get(i).GetID());
+        }
         m_utilisateurDataSource.close();
     };
 }

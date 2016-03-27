@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.adapters.ListeNotificationsAdapter;
-import deptinfo.cegepgarneau.ca.tp2.adapters.ListeNouvellesAdapter;
 
 /**
  * Created by Renaud-Charles on 22/02/2016.
@@ -36,7 +35,7 @@ public class NotificationsFragment extends ListFragment {
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_notifications);
 
-        this.setListAdapter(new ListeNotificationsAdapter(this.getContext(), R.layout.liste_item_notifications, R.id.txtTitreNotifications, this.arrChoix));
+        this.setListAdapter(new ListeNotificationsAdapter(this.getContext(), R.layout.liste_item_notifications, R.id.txtPrenomNom, this.arrChoix));
         return  view;
     }
 
