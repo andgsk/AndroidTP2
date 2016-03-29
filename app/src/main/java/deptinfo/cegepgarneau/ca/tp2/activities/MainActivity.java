@@ -231,10 +231,6 @@ return true;
         Fragment fragment = new NouvellesFragment();
 
         switch (view.getId()) {
-            case R.id.btnsaveajoutmodpiste:
-                fragment = new ListesPistesFragment();
-                shouldChange = true;
-                break;
             case R.id.finishaddreussite:
                 fragment = new ListesPistesFragment();
                 shouldChange = true;

@@ -1,6 +1,7 @@
 package deptinfo.cegepgarneau.ca.tp2.classes;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Renaud-Charles on 20/03/2016.
@@ -13,59 +14,58 @@ public class Piste implements Serializable{
     public int              id = ID_UNDEFINED;
 
     // Variables qui varies.
-    public String           username;
-    public String           password;
-    public int              typeCompte;
-    public String           prenom = "n/a";
-    public String           nom = "n/a";
-    public String           email = "n/a";
-    public String           adresse = "n/a";
-    public String           noTelephone = "555-123-4567";
+    private String           nom;
+    private int              type;
+    private String           ouvreurUsername;
+    private String           description;
+    private String           difficulte = "5.5";
+    private Date             dateCreation;
+    private boolean          actif = true;
 
     // Type de comptes
-    public static final int TYPE_GRIMPEUR = 0;
-    public static final int TYPE_OUVREUR = 1;
+    public static final int TYPE_BLOC = 0;
+    public static final int TYPE_VOIE = 1;
 
     // Constructeur
-    public Piste(String username, String password, int typeCompte){
-        this.username = username;
-        this.password = password;
-        this.typeCompte = typeCompte;
+    public Piste(String nom, int type, String username, String description, String diff){
+        this.nom = nom;
+        this.type = type;
+        this.ouvreurUsername = username;
+        this.description = description;
+        this.difficulte = diff;
+        this.dateCreation = new Date();
     }
+
 
     // Index
     public int GetID(){return this.id;}
     public void SetID(int id){this.id = id;}
 
-    // Type compte
-    public int GetTypeCompte(){return this.typeCompte;}
-    public void SetTypeCompte(int typeCompte){this.typeCompte = typeCompte;}
-
-    // Username
-    public String GetUsername(){return this.username;}
-    public void SetUsername(String username){this.username = username;}
-
-    // Password
-    public String GetPassword(){return this.password;}
-    public void SetPassword(String password){this.password = password;}
-
-    // Prenom
-    public String GetPrenom(){return this.prenom;}
-    public void SetPrenom(String prenom){this.prenom = prenom;}
-
-    // Nom
+    // Le nom de la piste.
     public String GetNom(){return this.nom;}
     public void SetNom(String nom){this.nom = nom;}
 
-    // Email
-    public String GetEmail(){return this.email;}
-    public void SetEmail(String email){this.email = email;}
+    // Type de piste.
+    public int GetType(){return this.type;}
+    public void SetType(int type){this.type = type;}
 
-    // Adresse
-    public String GetAdresse(){return this.adresse;}
-    public void SetAdresse(String adresse){this.adresse = adresse;}
+    // Nom d'utilisateur de l'ouvreur.
+    public String GetOuvreurUsername(){return this.ouvreurUsername;}
+    public void SetOuvreurUsername(String username){this.ouvreurUsername = username;}
 
-    // Numero de telephone
-    public String GetNoTelephone(){return this.noTelephone;}
-    public void SetNoTelephone(String noTelephone){this.noTelephone = noTelephone;}
+    // La description de la piste.
+    public String GetDescription(){return this.description;}
+    public void SetDescription(String description){this.description = description;}
+
+    // La difficulte de la piste.
+    public String GetDifficulte(){return this.difficulte;}
+    public void SetDifficulte(String difficulte){this.difficulte = difficulte;}
+
+    // La date de creation.
+    public Date GetDate(){return this.dateCreation;}
+    public void SetDate(Date date){this.dateCreation = date;}
+
+    // Verification de letat de la piste.
+    public Boolean EstActif(){return this.actif;}
+    public void SetActif(boolean actif){this.actif = actif;}
 }

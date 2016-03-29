@@ -17,6 +17,7 @@ import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
  * Created by Andrey on 2016-02-27.
  */
 public class addPisteFragment extends Fragment  implements Spinner.OnItemSelectedListener {
+    private String[] arrType = {"Bloc", "Voie"};
     private  String[] arrDiff ={"5.5", "5.6", "5.7",
             "5.8", "5.9", "5.10a", "5.10b", "5.10c", "5.10d", "5.11a",
             "5.11b", "5.11c", "5.11d", "5.12a", "5.12b", "5.12c", "5.12d",
@@ -35,9 +36,15 @@ public class addPisteFragment extends Fragment  implements Spinner.OnItemSelecte
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_pistes);
 
+        // Type
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinnerType);
+        ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrType);
+        LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(LTRadapter);
 
-        Spinner spinner = (Spinner) view.findViewById(R.id.spinnerDiff);
-        ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrDiff);
+        // Difficulte.
+        spinner = (Spinner) view.findViewById(R.id.spinnerDiff);
+        LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrDiff);
         LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(LTRadapter);
 

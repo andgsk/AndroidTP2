@@ -2,8 +2,12 @@
     <string name="app_name">Escalade</string>
     <string name="nom">Votre nom</string>
     <string name="login">Login</string>
+    <string name="entrer_login">Nom d\'utilisateur</string>
     <string name="mdp">Mot de passe</string>
+    <string name="mdp_confirmation">Confirmer mdp</string>
+    <string name="sauvegarde_infos">Sauvegarder les informations</string>
     <string name="connexion">Connexion</string>
+    <string name="inscrire">S\'inscrire</string>
     <string name="Inscription">Inscription</string>
     <string name="lblinscr">Inscription</string>
     <string name="nameInsc">Name</string>
@@ -25,7 +29,12 @@
     <string name="Decon">Deconnexion</string>
     <string name="save">Sauvegarder</string>
     <string name="nomPiste">Nom de la piste</string>
+    <string name="piste_desc">Courte description de la piste.</string>
+    <string name="confirmer">Confirmer</string>
     <string name="ajouter">Ajouter</string>
+    <string name="type_piste">Type de la piste:</string>
+    <string name="difficulte_piste">Difficulte de la piste:</string>
+    <string name="ajouter_piste">Ajouter une piste</string>
     <string name="ajouterImage">Ajouter image</string>
     <string name="commentaires">Commentaires</string>
     <string name="block">Bloc</string>

@@ -25,11 +25,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="@string/login"
                 android:ems="10"
                 android:id="@+id/login"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:hint="@string/login" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -37,10 +37,17 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:id="@+id/mdp"
-                android:text="@string/mdp"
                 android:layout_centerVertical="true"
                 android:layout_alignLeft="@+id/login"
-                android:layout_alignStart="@+id/login" />
+                android:layout_alignStart="@+id/login"
+                android:hint="@string/mdp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sauvegarde_infos"
+                android:id="@+id/checkBox"
+                android:layout_gravity="center_horizontal" />
 
             <Button
                 android:layout_width="wrap_content"

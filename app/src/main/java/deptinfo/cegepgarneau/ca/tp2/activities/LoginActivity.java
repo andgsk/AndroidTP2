@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,8 +70,12 @@ public class LoginActivity extends AppCompatActivity {
         EditText loginView = (EditText) findViewById(R.id.login);
         EditText mdpView = (EditText) findViewById(R.id.mdp);
 
+        // Utilisateurs par defaut
+        CreateDefaultUsers();
+
         m_utilisateurDataSource.open();
         m_user = m_utilisateurDataSource.GetUtilisateur(loginView.getText().toString(), mdpView.getText().toString());
+        Toast.makeText(this, loginView.getText().toString() + " : " + mdpView.getText().toString(), Toast.LENGTH_LONG).show();
         m_utilisateurDataSource.close();
 
         if (m_user != null) {
@@ -80,20 +85,39 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            Toast.makeText(this, "Mauvais utilisateur/mot de passe.", Toast.LENGTH_LONG).show();
+           Toast.makeText(this, "Mauvais utilisateur/mot de passe.", Toast.LENGTH_LONG).show();
         }
     }
 
     //Lorsque l'on clique inscription, on change de fragment.
     public void onInscriptionClick(View view){
-        CreateDefaultUsers();
         InscriptionFragment inscriptionFragment = new InscriptionFragment();
         OpenFragment(inscriptionFragment);
     }
 
+    // Inscription principale.
     public void onInscriptionContinuerClick(View view){
-        InscriptionSuiteFragment inscriptionSuiteFragment = new InscriptionSuiteFragment();
-        OpenFragment(inscriptionSuiteFragment);
+        String txtUsername = ((EditText)findViewById(R.id.txtUsername)).getText().toString();
+        String txtMDP = ((EditText)findViewById(R.id.txtMDP)).getText().toString();
+        String txtMDPConf = ((EditText)findViewById(R.id.txtMDPConf)).getText().toString();
+
+        if (TextUtils.isEmpty(txtUsername) || TextUtils.isEmpty(txtMDP) || TextUtils.isEmpty(txtMDPConf) ){
+            Toast.makeText(this, "Informations manquantes", Toast.LENGTH_LONG).show();
+        }
+        else if (!txtMDP.equals(txtMDPConf)){
+            Toast.makeText(this, "Mot de passe incorrect", Toast.LENGTH_LONG).show();
+        }
+        else{
+            boolean estCreer = CreerNouvelleUtilisateur(txtUsername, txtMDP, Utilisateur.TYPE_GRIMPEUR);
+            if (!estCreer){
+                Toast.makeText(this, "Impossible de creer l'utilisateur", Toast.LENGTH_LONG).show();
+            }
+            else{
+                Toast.makeText(this, "Utilisateur creer avec succes", Toast.LENGTH_LONG).show();
+                InscriptionSuiteFragment inscriptionSuiteFragment = new InscriptionSuiteFragment();
+                OpenFragment(inscriptionSuiteFragment);
+            }
+        }
     }
 
     public void onInscriptionTerminerClick(View view){
@@ -149,14 +173,19 @@ public class LoginActivity extends AppCompatActivity {
         m_utilisateurDataSource.InsertUser(new Utilisateur("Marie", "Marie", Utilisateur.TYPE_GRIMPEUR));
         m_utilisateurDataSource.InsertUser(new Utilisateur("Simone", "Simone", Utilisateur.TYPE_GRIMPEUR));
         m_utilisateurDataSource.InsertUser(new Utilisateur("Eve", "Eve", Utilisateur.TYPE_OUVREUR));
-
-        List<Utilisateur> users = m_utilisateurDataSource.GetAllUtilisateurs();
-        Toast.makeText(this, "# " + users.size(), Toast.LENGTH_SHORT).show();
-        for(int i = 0; i < users.size(); i++) {
-            Toast.makeText(this, users.get(i).GetUsername(), Toast.LENGTH_SHORT).show();
-            //System.out.print(users.get(i).GetNom() + " : " + users.get(i).GetID());
-        }
         m_utilisateurDataSource.close();
     };
+
+    public boolean CreerNouvelleUtilisateur(String username, String password, int type){
+        Utilisateur user = new Utilisateur(username, password, type);
+        m_utilisateurDataSource.open();
+        int id = m_utilisateurDataSource.InsertUser(user);
+        m_utilisateurDataSource.close();
+
+        if (id != Utilisateur.ID_UNDEFINED)
+            return true;
+        else
+            return false;
+    }
 }
 
