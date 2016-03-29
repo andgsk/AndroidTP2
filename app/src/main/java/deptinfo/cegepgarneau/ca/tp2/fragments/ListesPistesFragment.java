@@ -9,9 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.adapters.TabsPagerAdapter;
+import deptinfo.cegepgarneau.ca.tp2.classes.Piste;
 
 /**
  * Created by Renaud-Charles on 22/02/2016.
@@ -46,6 +49,7 @@ public class ListesPistesFragment extends Fragment {
 
         return  view;
     }
+
 
     private void setupViewPager(ViewPager viewPager) {
 

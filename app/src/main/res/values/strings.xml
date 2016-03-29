@@ -45,6 +45,7 @@
     <string name="titre_profil">Profil</string>
     <string name="titre_classements">Classements</string>
     <string name="titre_pistes">Liste des Pistes</string>
+    <string name="titre_ajouter_piste">Ajouter une Piste</string>
     <string name="titre_preferences">Preferences</string>
     <string name="titre_demandes">Invitations</string>
     <string name="titre_mod_profil">Modification Profil</string>

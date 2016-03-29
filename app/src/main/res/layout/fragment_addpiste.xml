@@ -84,7 +84,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/confirmer"
                 android:id="@+id/btnAjouterPiste"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:onClick="onClick" />
         </LinearLayout>
     </ScrollView>
 

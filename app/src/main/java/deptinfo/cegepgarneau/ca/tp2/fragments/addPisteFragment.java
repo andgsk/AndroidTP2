@@ -17,8 +17,8 @@ import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
  * Created by Andrey on 2016-02-27.
  */
 public class addPisteFragment extends Fragment  implements Spinner.OnItemSelectedListener {
-    private String[] arrType = {"Bloc", "Voie"};
-    private  String[] arrDiff ={"5.5", "5.6", "5.7",
+    public static String[] arrType = {"Bloc", "Voie"};
+    public static String[] arrDiff ={"5.5", "5.6", "5.7",
             "5.8", "5.9", "5.10a", "5.10b", "5.10c", "5.10d", "5.11a",
             "5.11b", "5.11c", "5.11d", "5.12a", "5.12b", "5.12c", "5.12d",
             "5.13a", "5.13b", "5.13c", "5.13d",
@@ -35,6 +35,7 @@ public class addPisteFragment extends Fragment  implements Spinner.OnItemSelecte
         View view = inflater.inflate(R.layout.fragment_addpiste,container,false);
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_pistes);
+        //view.findViewById(R.id.btnAjouterPiste).setOnClickListener();
 
         // Type
         Spinner spinner = (Spinner) view.findViewById(R.id.spinnerType);

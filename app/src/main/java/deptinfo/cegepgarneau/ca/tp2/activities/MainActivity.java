@@ -12,9 +12,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.List;
+
 import deptinfo.cegepgarneau.ca.tp2.R;
+import deptinfo.cegepgarneau.ca.tp2.classes.Piste;
+import deptinfo.cegepgarneau.ca.tp2.classes.PisteDataSource;
 import deptinfo.cegepgarneau.ca.tp2.classes.Utilisateur;
+import deptinfo.cegepgarneau.ca.tp2.classes.UtilisateurDataSource;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ClassementsFragment;
 import deptinfo.cegepgarneau.ca.tp2.fragments.DemandesFragments;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ListesPistesFragment;
@@ -34,7 +42,10 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.addPisteFragment;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // Variables
+    private PisteDataSource m_pisteDb;
+
     public Utilisateur m_user;
+    public Piste m_pisteActu;
     public Toolbar mToolbar;
     public DrawerLayout mDrawerLayout;
     public NavigationView mNavigationView;
@@ -48,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        m_pisteDb = new PisteDataSource(this);
 
         // On va cherche l'utilisateur principale. S'il n'existe pas, on retourne au login.
         Intent intent = getIntent();
@@ -195,6 +207,10 @@ return true;
                 fragment = new ListesPistesFragment();
                 shouldSwitch = true;
                 break;
+            case R.id.nav_ajouter_piste:
+                fragment = new addPisteFragment();
+                shouldSwitch = true;
+                break;
             case R.id.nav_profil:
                 showMenu = true;
                 fragment = new ProfilFragment();
@@ -231,6 +247,14 @@ return true;
         Fragment fragment = new NouvellesFragment();
 
         switch (view.getId()) {
+            case R.id.btnAjouterPiste:
+                Piste piste = AjouterUnePiste();
+                if (piste != null) {
+                    m_pisteActu = piste;
+                    fragment = new ListesPistesFragment();
+                    shouldChange = true;
+                }
+                break;
             case R.id.finishaddreussite:
                 fragment = new ListesPistesFragment();
                 shouldChange = true;
@@ -279,6 +303,46 @@ return true;
 
     public void OpenFragment(Fragment fragment){
         OpenFragment(fragment, false);
+    }
+
+    // Fonction qui ajoute une piste dans le system.
+    public Piste AjouterUnePiste(){
+        Piste piste = null;
+
+        Spinner spinnerType = (Spinner) findViewById(R.id.spinnerType);
+        Spinner spinnerDiff = (Spinner) findViewById(R.id.spinnerDiff);
+
+        String nomPiste = ((EditText)findViewById(R.id.txtNomPiste)).getText().toString();
+        String description = ((EditText)findViewById(R.id.txtDescription)).getText().toString();
+        String difficulte = addPisteFragment.arrDiff[spinnerDiff.getSelectedItemPosition()];
+        String type = addPisteFragment.arrType[spinnerType.getSelectedItemPosition()];
+
+        if (nomPiste.isEmpty())
+            Toast.makeText(this, "Veuillez entrer un nom de piste.", Toast.LENGTH_LONG).show();
+        else if (description.isEmpty())
+            Toast.makeText(this, "Veuillez entrer une description.", Toast.LENGTH_LONG).show();
+        else{
+            m_pisteDb.open();
+            int typePiste = Piste.TYPE_BLOC;
+            if (type.equals("Voie"))
+                typePiste = Piste.TYPE_VOIE;
+
+            piste = m_pisteDb.Insert(new Piste(nomPiste,typePiste,m_user.GetUsername(),description,difficulte));
+            m_pisteDb.close();
+
+            Toast.makeText(this, type + " : Piste ajoute avec success.", Toast.LENGTH_LONG).show();
+        }
+
+        return piste;
+    }
+
+    // Return une liste de pistes.
+    public List<Piste> GetPistes(int type){
+        List<Piste> list;
+        m_pisteDb.open();
+        list = m_pisteDb.GetAllPistesType(type);
+        m_pisteDb.close();
+        return list;
     }
 
 }

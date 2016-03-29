@@ -17,6 +17,11 @@
             android:title="@string/titre_pistes"
             />
         <item
+            android:id="@+id/nav_ajouter_piste"
+            android:icon="@drawable/ic_pets_black_24dp"
+            android:title="@string/titre_ajouter_piste"
+            />
+        <item
             android:id="@+id/nav_profil"
             android:icon="@drawable/ic_contacts_black_24dp"
             android:title="@string/titre_profil"

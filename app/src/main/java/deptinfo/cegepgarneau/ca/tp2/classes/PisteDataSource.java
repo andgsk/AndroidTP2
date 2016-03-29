@@ -16,7 +16,7 @@ import java.util.List;
 public class PisteDataSource {
 
     // PROPRIETEES DE LA TABLE
-    private final static int        DB_VERSION = 1;
+    private final static int        DB_VERSION = 3;
     private final static String     TABLE_NAME = "pistes";
 
     private final static String     COL_ID = "_id";
@@ -63,12 +63,29 @@ public class PisteDataSource {
                 c.getString(IDX_USERNAME),
                 c.getString(IDX_DESCRIPTION),
                 c.getString(IDX_DIFFICULTE));
-
+        piste.SetID(c.getInt(IDX_ID));
         piste.SetDate(new Date(c.getInt(IDX_DATECREATION)));
         if (c.getInt(IDX_ACTIF) < 0)
             piste.SetActif(false);
 
         return piste;
+    }
+
+    // Permet de recuperer selon le type.
+    public List<Piste> GetAllPistesType(int type){
+        List<Piste> list = new ArrayList<Piste>();
+        String[] args = new String[]{String.valueOf(type)};
+
+        Cursor c = m_db.query(TABLE_NAME, null, COL_TYPE + "=?", args, null, null, null);
+        c.moveToFirst();
+
+        while (!c.isAfterLast()){
+            Piste piste = CursorToPiste(c);
+            list.add(piste);
+            c.moveToNext();
+        }
+
+        return list;
     }
 
     // Permet de recuperer tout les users.
@@ -88,16 +105,17 @@ public class PisteDataSource {
     }
 
     // Fonction qui ajoute un nouvelle utilisateur dans la base de donnees.
-    public int Insert(Piste piste){
+    public Piste Insert(Piste piste){
         ContentValues row = PisteToContentValue(piste);
         int newId = (int) m_db.insert(TABLE_NAME, null, row);
         piste.SetID(newId);
-        return newId;
+        return piste;
     }
 
     // Fonction qui convertie les valeurs user en content value pour la base de donnees.
     private ContentValues PisteToContentValue(Piste piste){
         ContentValues row = new ContentValues();
+        row.put(COL_ID, piste.GetID());
         row.put(COL_TYPE, piste.GetType());
         row.put(COL_NOM, piste.GetNom());
         row.put(COL_USERNAME, piste.GetOuvreurUsername());
@@ -126,6 +144,7 @@ public class PisteDataSource {
                     + "(" + COL_ID + " integer primary key autoincrement, "
                     + COL_TYPE + " integer, "
                     + COL_USERNAME + " text, "
+                    + COL_NOM + " text, "
                     + COL_DESCRIPTION + " text, "
                     + COL_DIFFICULTE + " text, "
                     + COL_DATECREATION + " integer, "
