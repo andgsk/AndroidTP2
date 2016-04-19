@@ -1,0 +1,53 @@
+Users :
+	Token - (User ID + Randomly generated token)
+
+Pistes : 
+
+Critiques IV:
+	
+	IV = (V / (V + M)) x R + M / (V + M)) x G
+
+	DOIT AVOIR 5 ETOILES
+	DOIT AUTER LES 5% MOINS FORT ET 5% PLUS FORTS (DOIT ETRE ENLEVER DU NB DE VOTES)
+	5% arrondi au ceil
+
+	IV = Rating
+	V = Nombre de voies.
+	M = Nombre minimal de votes pour avoir un IV
+	R = Le rating moyenne d'une voie ou d'un bloc (critique moyenne des votes)
+	G = Le rating moyen de toute les voies ou les blocs (exclus cette piste)
+
+	Rating = (nbVoies / (nbVoies + nbMinimalVotes)) x moyenVoie
+
+
+PREFERENCES:
+
+	SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this)
+	String msgPref = prefs.getString(MyService.KEY_PREF_MSG, "non defini");
+
+GAE :
+ 	
+
+SERVICES :
+	Faire un thread (timerTask) pour fetch les informations de GAE.
+
+	// Quelques fonctions.
+
+	Timers:
+		fonctionne pas avec UI.
+		.cancel()
+		.start()
+		.schedule(monTimer, monTemps?)
+		
+	Runnable:
+		fonctionne avec UI.
+		doit etre call recursive
+		.postDelayed(monRunnable, monTemps)
+
+	chkRunOnce.isChecked();
+	mTimer.schedule();
+
+
+// DASDASD
+
+FloatingActionButton
