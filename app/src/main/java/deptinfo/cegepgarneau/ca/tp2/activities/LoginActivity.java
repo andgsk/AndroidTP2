@@ -173,6 +173,7 @@ public class LoginActivity extends AppCompatActivity {
         m_utilisateurDataSource.InsertUser(new Utilisateur("Marie", "Marie", Utilisateur.TYPE_GRIMPEUR));
         m_utilisateurDataSource.InsertUser(new Utilisateur("Simone", "Simone", Utilisateur.TYPE_GRIMPEUR));
         m_utilisateurDataSource.InsertUser(new Utilisateur("Eve", "Eve", Utilisateur.TYPE_OUVREUR));
+        m_utilisateurDataSource.InsertUser(new Utilisateur("1", "1", Utilisateur.TYPE_OUVREUR));
         m_utilisateurDataSource.close();
     };
 

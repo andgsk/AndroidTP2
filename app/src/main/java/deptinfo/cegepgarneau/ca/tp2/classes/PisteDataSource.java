@@ -36,7 +36,8 @@ public class PisteDataSource {
     private final static int        IDX_NOM = 3;
     private final static int        IDX_DESCRIPTION = 4;
     private final static int        IDX_DIFFICULTE = 5;
-    private final static int        IDX_DATECREATION = 6;
+    private final static int
+            IDX_DATECREATION = 6;
     private final static int        IDX_ACTIF = 7;
 
     private PisteDBHelper           m_dbHelper;
@@ -118,9 +119,8 @@ public class PisteDataSource {
             row.put("nom", piste.GetNom());
             row.put("type", piste.GetType());
 
-        //int newId = (int)
-         m_db.insert(TABLE_NAME, null, row);
-        //piste.SetID(newId);
+        int newId = (int) m_db.insert(TABLE_NAME, null, row);
+        piste.SetID(newId);
         return piste;
     }
 

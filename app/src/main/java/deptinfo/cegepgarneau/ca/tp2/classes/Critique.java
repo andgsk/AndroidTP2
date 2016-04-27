@@ -1,9 +1,10 @@
 package deptinfo.cegepgarneau.ca.tp2.classes;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
- * Created by Renaud-Charles on 20/03/2016.
+ * Created by Andrey on 28/03/2016.
  */
 
 public class Critique implements Serializable{
@@ -13,59 +14,37 @@ public class Critique implements Serializable{
     public int              id = ID_UNDEFINED;
 
     // Variables qui varies.
-    public String           username;
-    public String           password;
-    public int              typeCompte;
-    public String           prenom = "n/a";
-    public String           nom = "n/a";
-    public String           email = "n/a";
-    public String           adresse = "n/a";
-    public String           noTelephone = "555-123-4567";
-
-    // Type de comptes
-    public static final int TYPE_GRIMPEUR = 0;
-    public static final int TYPE_OUVREUR = 1;
-
+    public String           user = "n/a";
+    public int              ouvr;
+    public String           diff = "n/a";
+    public Date             date;
+    public int              piste;
     // Constructeur
-    public Critique(String username, String password, int typeCompte){
-        this.username = username;
-        this.password = password;
-        this.typeCompte = typeCompte;
+    public Critique(String user, int ouvr, String diff, Date date,int piste){
+        this.user = user;
+        this.ouvr = ouvr;
+        this.diff = diff;
+        this.date = date;
+        this.piste = piste;
     }
 
     // Index
     public int GetID(){return this.id;}
     public void SetID(int id){this.id = id;}
 
-    // Type compte
-    public int GetTypeCompte(){return this.typeCompte;}
-    public void SetTypeCompte(int typeCompte){this.typeCompte = typeCompte;}
+    public String GetUser(){return this.user ;}
+    public void SetUser(String user){this.user = user;}
 
-    // Username
-    public String GetUsername(){return this.username;}
-    public void SetUsername(String username){this.username = username;}
+    public int GetOuvreur(){return this.ouvr;}
+    public void SetOuvreur(int ouvr){this.ouvr = ouvr;}
 
-    // Password
-    public String GetPassword(){return this.password;}
-    public void SetPassword(String password){this.password = password;}
+    public String GetDiff(){return this.diff ;}
+    public void SetDiff(String diff){this.diff = diff;}
 
-    // Prenom
-    public String GetPrenom(){return this.prenom;}
-    public void SetPrenom(String prenom){this.prenom = prenom;}
+    public Date GetDate(){return this.date ;}
+    public void SetDate(Date date){this.date = date;}
 
-    // Nom
-    public String GetNom(){return this.nom;}
-    public void SetNom(String nom){this.nom = nom;}
+    public int GetPiste(){return this.piste ;}
+    public void SetPiste(int piste){this.piste = piste;}
 
-    // Email
-    public String GetEmail(){return this.email;}
-    public void SetEmail(String email){this.email = email;}
-
-    // Adresse
-    public String GetAdresse(){return this.adresse;}
-    public void SetAdresse(String adresse){this.adresse = adresse;}
-
-    // Numero de telephone
-    public String GetNoTelephone(){return this.noTelephone;}
-    public void SetNoTelephone(String noTelephone){this.noTelephone = noTelephone;}
 }

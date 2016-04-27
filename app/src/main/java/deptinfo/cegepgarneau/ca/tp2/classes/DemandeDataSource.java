@@ -7,149 +7,123 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Renaud-Charles on 20/03/2016.
  */
 public class DemandeDataSource {
+    public static final int ID_UNDEFINED = -1;
+    public int              id = ID_UNDEFINED;
 
-    // PROPRIETEES DE LA TABLE
+    public static final int TYPE_ACC = 0;
+    public static final int TYPE_NONACC = 1;
+
     private final static int        DB_VERSION = 1;
-    private final static String     TABLE_NAME = "pistes";
+    private final static String     TABLE_NAME = "demandes";
 
     private final static String     COL_ID = "_id";
     private final static String     COL_USERNAME = "username";
-    private final static String     COL_PASSWORD = "password";
-    private final static String     COL_USERTYPE = "usertype";
-    private final static String     COL_NOM = "nom";
-    private final static String     COL_PRENOM = "prenom";
-    private final static String     COL_EMAIL = "email";
-    private final static String     COL_ADRESSE = "adresse";
-    private final static String     COL_TELEPHONE = "telephone";
+    private final static String     COL_NIVEAU= "niveau";
+    private final static String     COL_TYPE = "type";
+    private final static String     COL_DATE = "date";
 
     private final static int        IDX_ID = 0;
     private final static int        IDX_USERNAME = 1;
-    private final static int        IDX_PASSWORD = 2;
-    private final static int        IDX_USERTYPE = 3;
-    private final static int        IDX_NOM = 4;
-    private final static int        IDX_PRENOM = 5;
-    private final static int        IDX_EMAIL = 6;
-    private final static int        IDX_ADRESSE = 7;
-    private final static int        IDX_TELEPHONE = 8;
+    private final static int        IDX_NIVEAU = 2;
+    private final static int        IDX_TYPE = 3;
+    private final static int        IDX_DATE = 4;
 
-    private UtilisateurDBHelper     m_dbHelper;
+    private DemandeDBHelper     m_dbHelper;
     private SQLiteDatabase          m_db;
 
-    // CONSTRUCTEUR
     public DemandeDataSource(Context context){
-        m_dbHelper = new UtilisateurDBHelper(context);
+        m_dbHelper = new DemandeDBHelper(context);
     }
 
-    // Ouvre la connexion a la DB
     public void open(){
         m_db = m_dbHelper.getWritableDatabase();
     }
 
-    // Ferme la connexion a la DB
     public void close(){
         m_db.close();
     }
 
-    // Cursor vers un utilisateur.
-    private Utilisateur CursorToUser(Cursor c){
-        Utilisateur user = new Utilisateur(
+    private Demande CursorToDema(Cursor c){
+        Demande dema = new Demande(
                 c.getString(IDX_USERNAME),
-                c.getString(IDX_PASSWORD),
-                c.getInt(IDX_USERTYPE));
-        return user;
+                c.getString(IDX_NIVEAU));//,
+                //c.getInt(IDX_TYPE),
+                //c.getString(IDX_DATE));
+        return dema;
     }
 
-    // Permet de recuperer un utilisateur par son ID.
-    public Utilisateur GetUtilisateurByID(int id){
-        Utilisateur user = null;
+    public Demande GetDemandeByID(int id){
+        Demande dema = null;
         String[] args = new String[]{String.valueOf(id)};
 
         Cursor c = m_db.query(TABLE_NAME, null, COL_ID + "=?", args, null, null, null);
         c.moveToFirst();
 
         if (!c.isAfterLast()){
-            user = CursorToUser(c);
+            dema = CursorToDema(c);
         }
 
-        return user;
+        return dema;
     }
 
-    public Utilisateur GetUtilisateur(String username, String password){
-        Utilisateur user = null;
+    // Permet de recuperer selon le type.
+    public List<Demande> GetAllDemandesType(int type){
+        List<Demande> list = new ArrayList<Demande>();
+        String[] args = new String[]{String.valueOf(type)};
 
-        String[] args = new String[]{username, password};
-
-        Cursor c = m_db.query(TABLE_NAME, null, COL_USERNAME + "=? AND " + COL_PASSWORD + "=?" , args, null, null, null);
-
-        if (c.moveToFirst()){
-            user = CursorToUser(c);
-        }
-
-        return user;
-    }
-
-    // Permet de recuperer un utilisateur par son ID.
-    public Utilisateur GetUtilisateurByUsername(String username){
-        Utilisateur user = null;
-        String[] args = new String[]{username};
-
-        Cursor c = m_db.query(TABLE_NAME, null, COL_USERNAME + "=?", args, null, null, null);
-
-        if (c.moveToFirst()){
-            user = CursorToUser(c);
-        }
-
-        return user;
-    }
-
-    // Permet de recuperer tout les users.
-    public List<Utilisateur> GetAllUtilisateurs(){
-        List<Utilisateur> list = new ArrayList<Utilisateur>();
-
-        Cursor c = m_db.query(TABLE_NAME, null, null, null, null, null, null);
+        Cursor c = m_db.query(TABLE_NAME, null, COL_TYPE + "=?", args, null, null, null);
         c.moveToFirst();
 
         while (!c.isAfterLast()){
-            Utilisateur user = CursorToUser(c);
-            list.add(user);
+            Demande dema = CursorToDema(c);
+            list.add(dema);
             c.moveToNext();
         }
 
         return list;
     }
 
-    // Fonction qui ajoute un nouvelle utilisateur dans la base de donnees.
-    public int InsertUser(Utilisateur user){
+    public Demande GetDemandeByUsername(String username){
+        Demande dema = null;
+        String[] args = new String[]{username};
+
+        Cursor c = m_db.query(TABLE_NAME, null, COL_USERNAME + "=?", args, null, null, null);
+
+        if (c.moveToFirst()){
+            dema = CursorToDema(c);
+        }
+
+        return dema;
+    }
+
+    public int InsertDemande(Demande dema){
 
         // S'assurer que l'utilisateur n'existe pas.
-        if (GetUtilisateurByUsername(user.GetUsername()) == null){
+        if (GetDemandeByUsername(dema.GetUsername()) == null){
 
-            ContentValues row = utilisateurToContentValue(user);
+            ContentValues row = demandeToContentValue(dema);
             int newId = (int) m_db.insert(TABLE_NAME, null, row);
-            user.SetID(newId);
+            dema.SetID(newId);
             return newId;
         }
         else
-            return Utilisateur.ID_UNDEFINED;
+            return Demande.ID_UNDEFINED;
     }
 
-    // Fonction qui convertie les valeurs user en content value pour la base de donnees.
-    private ContentValues utilisateurToContentValue(Utilisateur user){
+    private ContentValues demandeToContentValue(Demande dema){
         ContentValues row = new ContentValues();
-        row.put(COL_USERNAME, user.GetUsername());
-        row.put(COL_PASSWORD, user.GetPassword());
-        row.put(COL_USERTYPE, user.GetTypeCompte());
-        row.put(COL_NOM, user.GetNom());
-        row.put(COL_PRENOM, user.GetPrenom());
-        row.put(COL_EMAIL, user.GetEmail());
-        row.put(COL_ADRESSE, user.GetAdresse());
-        row.put(COL_TELEPHONE, user.GetNoTelephone());
+        row.put(COL_USERNAME, dema.GetUsername());
+        row.put(COL_DATE, (dema.GetDate()).toString());
+        row.put(COL_NIVEAU, dema.GetNiveau());
+        row.put(COL_TYPE,dema.GetType());
+
         return row;
     }
 
@@ -158,9 +132,9 @@ public class DemandeDataSource {
     //
 
 
-    private static class UtilisateurDBHelper extends SQLiteOpenHelper{
-        public UtilisateurDBHelper(Context context){
-            super(context, "pistes.sqlite", null, DB_VERSION);
+    private static class DemandeDBHelper extends SQLiteOpenHelper{
+        public DemandeDBHelper(Context context){
+            super(context, "demandes.sqlite", null, DB_VERSION);
         }
 
         @Override
@@ -168,13 +142,9 @@ public class DemandeDataSource {
             db.execSQL("create table " + TABLE_NAME
                     + "(" + COL_ID + " integer primary key autoincrement, "
                     + COL_USERNAME + " text, "
-                    + COL_PASSWORD + " text, "
-                    + COL_USERTYPE + " integer, "
-                    + COL_NOM + " text, "
-                    + COL_PRENOM + " text, "
-                    + COL_EMAIL + " text, "
-                    + COL_ADRESSE + " text, "
-                    + COL_TELEPHONE + " text)");
+                    + COL_DATE + " text, "
+                    + COL_TYPE + " integer, "
+                    + COL_NIVEAU + " text)");
         }
 
         @Override

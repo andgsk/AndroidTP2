@@ -16,9 +16,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Date;
 import java.util.List;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
+import deptinfo.cegepgarneau.ca.tp2.classes.Demande;
+import deptinfo.cegepgarneau.ca.tp2.classes.DemandeDataSource;
 import deptinfo.cegepgarneau.ca.tp2.classes.Piste;
 import deptinfo.cegepgarneau.ca.tp2.classes.PisteDataSource;
 import deptinfo.cegepgarneau.ca.tp2.classes.Utilisateur;
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // Variables
     private PisteDataSource m_pisteDb;
+    private DemandeDataSource m_demandeDb;
 
     public Utilisateur m_user;
     public Piste m_pisteActu;
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public android.support.v4.app.FragmentManager fragmentManager;
     public boolean showMenu = false;
     public Fragment fragmentActu;
+    public String score = "19";
 
 
     @Override
@@ -60,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         m_pisteDb = new PisteDataSource(this);
+        m_demandeDb = new DemandeDataSource(this);
 
         // On va cherche l'utilisateur principale. S'il n'existe pas, on retourne au login.
         Intent intent = getIntent();
@@ -146,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new modLoginMdpFragment();
                 break;
             case R.id.inviter_utilisateur:
-                Toast.makeText(this, "Uilisateur invité!", Toast.LENGTH_LONG).show();
+                AjouterDemande();
                 fragment = new ListesPistesFragment();
                 shouldSwitch = true;
                 break;
@@ -306,6 +312,24 @@ return true;
         OpenFragment(fragment, false);
     }
 
+    public int AjouterDemande(){
+        int newId;
+        Demande dema = null;
+
+        String username = this.m_user.GetUsername();
+        String niveau = score;
+
+        m_demandeDb.open();
+
+
+        newId = (int) m_demandeDb.InsertDemande(new Demande(username, niveau));
+        m_demandeDb.close();
+
+        Toast.makeText(this, 0 + " : demande ajoutée avec success.", Toast.LENGTH_LONG).show();
+
+        return newId;
+    }
+
     // Fonction qui ajoute une piste dans le system.
     public Piste AjouterUnePiste(){
         Piste piste = null;
@@ -343,6 +367,14 @@ return true;
         m_pisteDb.open();
         list = m_pisteDb.GetAllPistesType(type);
         m_pisteDb.close();
+        return list;
+    }
+
+    public List<Demande> GetDemandesActives(){
+        List<Demande> list;
+        m_demandeDb.open();
+        list = m_demandeDb.GetAllDemandesType(0);
+        m_demandeDb.close();
         return list;
     }
 
