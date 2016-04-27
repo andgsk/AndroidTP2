@@ -33,9 +33,7 @@ public class ListeBlocFragment extends ListFragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Création du fragment à partir du layout
         View v = inflater.inflate(R.layout.fragment_classbloc,container,false);
         ListePistesAdapter adapter = new ListePistesAdapter(this.getContext(), R.layout.liste_item_pistes, R.id.txtNomPistes, ((MainActivity)getActivity()).GetPistes(Piste.TYPE_BLOC), Piste.TYPE_BLOC);

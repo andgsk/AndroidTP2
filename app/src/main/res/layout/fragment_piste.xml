@@ -55,37 +55,4 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ajout reussite"
-        android:id="@+id/btnAddReussite"
-        android:layout_marginBottom="55dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btnMod"
-        android:layout_toStartOf="@+id/btnMod"
-        android:onClick="onClick"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Modifier la piste"
-        android:id="@+id/btnMod"
-        android:layout_alignTop="@+id/btnAddReussite"
-        android:layout_alignRight="@+id/textView11"
-        android:layout_alignEnd="@+id/textView11"
-        android:layout_marginRight="33dp"
-        android:layout_marginEnd="33dp"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Critiquer la piste"
-        android:id="@+id/btnCritiquer"
-        android:layout_above="@+id/btnAddReussite"
-        android:layout_toRightOf="@+id/txtDiffPiste"
-        android:layout_toEndOf="@+id/txtDiffPiste"
-        android:onClick="onClick"/>
 </RelativeLayout>

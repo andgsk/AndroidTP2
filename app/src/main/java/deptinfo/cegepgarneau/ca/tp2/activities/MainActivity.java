@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentActu = fragmentManager.findFragmentByTag(nomDernierFragment);
         }
 
+
         // Hide le menu.
         showMenu = false;
         RefreshTopMenu();
