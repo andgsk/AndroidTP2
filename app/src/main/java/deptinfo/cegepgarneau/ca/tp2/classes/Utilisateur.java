@@ -20,6 +20,7 @@ public class Utilisateur implements Serializable{
     public String           username;
     public String           password;
     public int              typeCompte;
+    public String           gae_key;
     public String           prenom = "n/a";
     public String           nom = "n/a";
     public String           email = "n/a";
@@ -30,11 +31,16 @@ public class Utilisateur implements Serializable{
     public static final int TYPE_GRIMPEUR = 0;
     public static final int TYPE_OUVREUR = 1;
 
+    // Constructeur sans mdp
+    public Utilisateur(String username, int typeCompte){
+        this.username = username;
+        this.typeCompte = typeCompte;
+    }
+
     // Constructeur
     public Utilisateur(String username, String password, int typeCompte){
-        this.username = username;
+        this(username, typeCompte);
         this.password = password;
-        this.typeCompte = typeCompte;
     }
 
     // Index
@@ -72,4 +78,8 @@ public class Utilisateur implements Serializable{
     // Numero de telephone
     public String GetNoTelephone(){return this.noTelephone;}
     public void SetNoTelephone(String noTelephone){this.noTelephone = noTelephone;}
+
+    // Cle NDB
+    public String GetGAEKey(){return this.gae_key;}
+    public void SetGAEKey(String gae_key){this.gae_key = gae_key;}
 }

@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.google.android.gms.wearable.internal.ChannelSendFileResponse;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +36,8 @@ public class PisteDataSource {
     private final static int        IDX_NOM = 3;
     private final static int        IDX_DESCRIPTION = 4;
     private final static int        IDX_DIFFICULTE = 5;
-    private final static int        IDX_DATECREATION = 6;
+    private final static int
+            IDX_DATECREATION = 6;
     private final static int        IDX_ACTIF = 7;
 
     private PisteDBHelper           m_dbHelper;
@@ -107,6 +110,15 @@ public class PisteDataSource {
     // Fonction qui ajoute un nouvelle utilisateur dans la base de donnees.
     public Piste Insert(Piste piste){
         ContentValues row = PisteToContentValue(piste);
+
+
+            row.put("difficulte", piste.GetDifficulte());
+            row.put("actif", piste.EstActif());
+            row.put("description", piste.GetDescription());
+            row.put("username",piste.GetOuvreurUsername());
+            row.put("nom", piste.GetNom());
+            row.put("type", piste.GetType());
+
         int newId = (int) m_db.insert(TABLE_NAME, null, row);
         piste.SetID(newId);
         return piste;
@@ -115,7 +127,7 @@ public class PisteDataSource {
     // Fonction qui convertie les valeurs user en content value pour la base de donnees.
     private ContentValues PisteToContentValue(Piste piste){
         ContentValues row = new ContentValues();
-        row.put(COL_ID, piste.GetID());
+        //row.put(COL_ID, piste.GetID());
         row.put(COL_TYPE, piste.GetType());
         row.put(COL_NOM, piste.GetNom());
         row.put(COL_USERNAME, piste.GetOuvreurUsername());
@@ -141,7 +153,7 @@ public class PisteDataSource {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("create table " + TABLE_NAME
-                    + "(" + COL_ID + " integer primary key autoincrement, "
+                    + "(" + COL_ID + " INTEGER PRIMARY KEY   AUTOINCREMENT, "
                     + COL_TYPE + " integer, "
                     + COL_USERNAME + " text, "
                     + COL_NOM + " text, "

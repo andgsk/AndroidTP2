@@ -7,22 +7,26 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
+import deptinfo.cegepgarneau.ca.tp2.classes.Demande;
+import deptinfo.cegepgarneau.ca.tp2.classes.Piste;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 
 /**
  * Created by Renaud-Charles on 26/02/2016.
  */
-public class ListeDemandesAdapter extends ArrayAdapter<String>{
+    public class ListeDemandesAdapter extends ArrayAdapter<Demande>{
 
-    private String[] listItems = null;
+    private List<Demande>  listItems = null;
     private Context context = null;
 
-    public ListeDemandesAdapter(Context context, int layoutRow, int layoutLabel, String[] arrItems) {
-        super(context, layoutRow, layoutLabel, arrItems);
+    public ListeDemandesAdapter(Context context, int layoutRow, int layoutLabel,List<Demande> liste) {
+        super(context, layoutRow, layoutLabel, liste);
         this.context = context;
-        this.listItems = arrItems;
+        this.listItems = liste;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -42,7 +46,7 @@ public class ListeDemandesAdapter extends ArrayAdapter<String>{
                 }
 
             }
-        });
+        });//coucoucheriiiiiii
 
         return (row);
     }

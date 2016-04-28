@@ -1,9 +1,10 @@
 package deptinfo.cegepgarneau.ca.tp2.classes;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
- * Created by Renaud-Charles on 20/03/2016.
+ * Created by Andrey on 20/03/2016.
  */
 
 public class Demande implements Serializable{
@@ -14,23 +15,20 @@ public class Demande implements Serializable{
 
     // Variables qui varies.
     public String           username;
-    public String           password;
-    public int              typeCompte;
-    public String           prenom = "n/a";
-    public String           nom = "n/a";
-    public String           email = "n/a";
-    public String           adresse = "n/a";
-    public String           noTelephone = "555-123-4567";
+    public String           niveau;
+    public int              type;
+    public Date             date;
 
-    // Type de comptes
-    public static final int TYPE_GRIMPEUR = 0;
-    public static final int TYPE_OUVREUR = 1;
+    // Type de demandes
+    public static final int TYPE_ACC = 0;
+    public static final int TYPE_NONACC = 1;
 
     // Constructeur
-    public Demande(String username, String password, int typeCompte){
+    public Demande(String username, String niveau){
         this.username = username;
-        this.password = password;
-        this.typeCompte = typeCompte;
+        this.niveau = niveau;
+        this.type = TYPE_ACC;
+        this.date = new Date();
     }
 
     // Index
@@ -38,34 +36,19 @@ public class Demande implements Serializable{
     public void SetID(int id){this.id = id;}
 
     // Type compte
-    public int GetTypeCompte(){return this.typeCompte;}
-    public void SetTypeCompte(int typeCompte){this.typeCompte = typeCompte;}
+    public int GetType(){return this.type;}
+    public void SetType(int type){this.type = type;}
 
     // Username
     public String GetUsername(){return this.username;}
     public void SetUsername(String username){this.username = username;}
 
-    // Password
-    public String GetPassword(){return this.password;}
-    public void SetPassword(String password){this.password = password;}
+    // Niveau
+    public String GetNiveau(){return this.niveau;}
+    public void SetNiveau(String niveau){this.niveau = niveau;}
 
-    // Prenom
-    public String GetPrenom(){return this.prenom;}
-    public void SetPrenom(String prenom){this.prenom = prenom;}
+    // Date
+    public Date GetDate(){return this.date;}
+    public void SetDate(Date date){this.date = date;}
 
-    // Nom
-    public String GetNom(){return this.nom;}
-    public void SetNom(String nom){this.nom = nom;}
-
-    // Email
-    public String GetEmail(){return this.email;}
-    public void SetEmail(String email){this.email = email;}
-
-    // Adresse
-    public String GetAdresse(){return this.adresse;}
-    public void SetAdresse(String adresse){this.adresse = adresse;}
-
-    // Numero de telephone
-    public String GetNoTelephone(){return this.noTelephone;}
-    public void SetNoTelephone(String noTelephone){this.noTelephone = noTelephone;}
 }

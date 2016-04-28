@@ -6,8 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Renaud-Charles on 20/03/2016.
@@ -16,34 +21,28 @@ public class CritiqueDataSource {
 
     // PROPRIETEES DE LA TABLE
     private final static int        DB_VERSION = 1;
-    private final static String     TABLE_NAME = "pistes";
+    private final static String     TABLE_NAME = "critiques";
 
     private final static String     COL_ID = "_id";
-    private final static String     COL_USERNAME = "username";
-    private final static String     COL_PASSWORD = "password";
-    private final static String     COL_USERTYPE = "usertype";
-    private final static String     COL_NOM = "nom";
-    private final static String     COL_PRENOM = "prenom";
-    private final static String     COL_EMAIL = "email";
-    private final static String     COL_ADRESSE = "adresse";
-    private final static String     COL_TELEPHONE = "telephone";
+    private final static String     COL_USER = "user";
+    private final static String     COL_OUVR = "ouvr";
+    private final static String     COL_DIFF = "diff";
+    private final static String     COL_DATE = "date";
+    private final static String     COL_PISTE = "piste";
 
     private final static int        IDX_ID = 0;
-    private final static int        IDX_USERNAME = 1;
-    private final static int        IDX_PASSWORD = 2;
-    private final static int        IDX_USERTYPE = 3;
-    private final static int        IDX_NOM = 4;
-    private final static int        IDX_PRENOM = 5;
-    private final static int        IDX_EMAIL = 6;
-    private final static int        IDX_ADRESSE = 7;
-    private final static int        IDX_TELEPHONE = 8;
+    private final static int        IDX_USER = 1;
+    private final static int        IDX_OUVR = 2;
+    private final static int        IDX_DIFF = 3;
+    private final static int        IDX_DATE = 4;
+    private final static int        IDX_PISTE = 5;
 
-    private UtilisateurDBHelper     m_dbHelper;
+    private CritiqueDBHelper     m_dbHelper;
     private SQLiteDatabase          m_db;
 
     // CONSTRUCTEUR
     public CritiqueDataSource(Context context){
-        m_dbHelper = new UtilisateurDBHelper(context);
+        m_dbHelper = new CritiqueDBHelper(context);
     }
 
     // Ouvre la connexion a la DB
@@ -56,83 +55,61 @@ public class CritiqueDataSource {
         m_db.close();
     }
 
-    // Cursor vers un utilisateur.
-    private Utilisateur CursorToUser(Cursor c){
-        Utilisateur user = new Utilisateur(
-                c.getString(IDX_USERNAME),
-                c.getString(IDX_PASSWORD),
-                c.getInt(IDX_USERTYPE));
-        return user;
+    // Cursor vers une critique.
+    private Critique CursorToCritique(Cursor c) throws ParseException {
+        DateFormat format = new SimpleDateFormat("dd-mm-yyyy", Locale.FRENCH);
+        String test = c.getString(IDX_DATE);
+        Date uneD = format.parse(test);
+
+        Critique crit = new Critique(
+                c.getString(IDX_USER),
+                c.getInt(IDX_OUVR),
+                c.getString(IDX_DIFF),
+                (java.sql.Date)uneD,
+                c.getInt(IDX_PISTE));
+        return crit;
     }
 
     // Permet de recuperer un utilisateur par son ID.
-    public Utilisateur GetUtilisateurByID(int id){
-        Utilisateur user = null;
+    public Critique GetCritiqueByID(int id) throws ParseException {
+        Critique crit = null;
         String[] args = new String[]{String.valueOf(id)};
 
         Cursor c = m_db.query(TABLE_NAME, null, COL_ID + "=?", args, null, null, null);
         c.moveToFirst();
 
         if (!c.isAfterLast()){
-            user = CursorToUser(c);
+            crit = CursorToCritique(c);
         }
 
-        return user;
+        return crit;
     }
 
-    public Utilisateur GetUtilisateur(String username, String password){
-        Utilisateur user = null;
-
-        String[] args = new String[]{username, password};
-
-        Cursor c = m_db.query(TABLE_NAME, null, COL_USERNAME + "=? AND " + COL_PASSWORD + "=?" , args, null, null, null);
-
-        if (c.moveToFirst()){
-            user = CursorToUser(c);
-        }
-
-        return user;
-    }
-
-    // Permet de recuperer un utilisateur par son ID.
-    public Utilisateur GetUtilisateurByUsername(String username){
-        Utilisateur user = null;
-        String[] args = new String[]{username};
-
-        Cursor c = m_db.query(TABLE_NAME, null, COL_USERNAME + "=?", args, null, null, null);
-
-        if (c.moveToFirst()){
-            user = CursorToUser(c);
-        }
-
-        return user;
-    }
-
-    // Permet de recuperer tout les users.
-    public List<Utilisateur> GetAllUtilisateurs(){
-        List<Utilisateur> list = new ArrayList<Utilisateur>();
+    // Permet de recuperer toutes les critiques.
+    public List<Critique> GetAllCritiques() throws ParseException {
+        List<Critique> list = new ArrayList<Critique>();
 
         Cursor c = m_db.query(TABLE_NAME, null, null, null, null, null, null);
         c.moveToFirst();
 
         while (!c.isAfterLast()){
-            Utilisateur user = CursorToUser(c);
-            list.add(user);
+            Critique crit = CursorToCritique(c);
+            list.add(crit);
             c.moveToNext();
         }
 
         return list;
     }
 
-    // Fonction qui ajoute un nouvelle utilisateur dans la base de donnees.
-    public int InsertUser(Utilisateur user){
+    // Fonction qui ajoute une nouvelle critique dans la base de donnees.
+    public int InsertCritiques(Critique crit) throws ParseException {
 
         // S'assurer que l'utilisateur n'existe pas.
-        if (GetUtilisateurByUsername(user.GetUsername()) == null){
+        if (GetCritiqueByID(crit.GetID()) == null){
 
-            ContentValues row = utilisateurToContentValue(user);
+            ContentValues row = critiqueToContentValue(crit);
             int newId = (int) m_db.insert(TABLE_NAME, null, row);
-            user.SetID(newId);
+            crit.SetID(newId);
             return newId;
         }
         else
@@ -140,26 +117,24 @@ public class CritiqueDataSource {
     }
 
     // Fonction qui convertie les valeurs user en content value pour la base de donnees.
-    private ContentValues utilisateurToContentValue(Utilisateur user){
+    private ContentValues critiqueToContentValue(Critique crit){
         ContentValues row = new ContentValues();
-        row.put(COL_USERNAME, user.GetUsername());
-        row.put(COL_PASSWORD, user.GetPassword());
-        row.put(COL_USERTYPE, user.GetTypeCompte());
-        row.put(COL_NOM, user.GetNom());
-        row.put(COL_PRENOM, user.GetPrenom());
-        row.put(COL_EMAIL, user.GetEmail());
-        row.put(COL_ADRESSE, user.GetAdresse());
-        row.put(COL_TELEPHONE, user.GetNoTelephone());
+        row.put(COL_USER, crit.GetUser());
+        row.put(COL_OUVR, crit.GetOuvreur());
+        row.put(COL_DIFF, crit.GetDiff());
+        row.put(COL_DATE, String.valueOf(crit.GetDate()));
+        row.put(COL_PISTE, crit.GetPiste());
         return row;
     }
+
 
     //
     // HELPER DB, NE PAS VRAIMENT TOUCHER.
     //
 
 
-    private static class UtilisateurDBHelper extends SQLiteOpenHelper{
-        public UtilisateurDBHelper(Context context){
+    private static class CritiqueDBHelper extends SQLiteOpenHelper{
+        public CritiqueDBHelper(Context context){
             super(context, "pistes.sqlite", null, DB_VERSION);
         }
 
@@ -167,14 +142,11 @@ public class CritiqueDataSource {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("create table " + TABLE_NAME
                     + "(" + COL_ID + " integer primary key autoincrement, "
-                    + COL_USERNAME + " text, "
-                    + COL_PASSWORD + " text, "
-                    + COL_USERTYPE + " integer, "
-                    + COL_NOM + " text, "
-                    + COL_PRENOM + " text, "
-                    + COL_EMAIL + " text, "
-                    + COL_ADRESSE + " text, "
-                    + COL_TELEPHONE + " text)");
+                    + COL_USER + " text, "
+                    + COL_OUVR + " text, "
+                    + COL_DIFF + " text, "
+                    + COL_DATE + " text, "
+                    + COL_PISTE + " text)");
         }
 
         @Override

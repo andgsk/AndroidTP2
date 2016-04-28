@@ -1,6 +1,5 @@
 package deptinfo.cegepgarneau.ca.tp2.fragments;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
@@ -28,6 +27,7 @@ public class ListeVoieFragment extends ListFragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
@@ -36,10 +36,8 @@ public class ListeVoieFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //Création du fragment à partir du layout
         View v = inflater.inflate(R.layout.fragment_classvoie,container,false);
-
-        ListePistesAdapter adapter = new ListePistesAdapter(this.getContext(), R.layout.liste_item_pistes, R.id.txtNomPistes, ((MainActivity)getActivity()).GetPistes(Piste.TYPE_VOIE), Piste.TYPE_BLOC);
+        ListePistesAdapter adapter = new ListePistesAdapter(this.getContext(), R.layout.liste_item_pistes, R.id.txtNomPistes, ((MainActivity)getActivity()).GetPistes(Piste.TYPE_VOIE), Piste.TYPE_VOIE);
         this.setListAdapter(adapter);
-
         return v;
     }
 }
