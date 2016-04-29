@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -221,15 +222,10 @@ public class LoginActivity extends AppCompatActivity {
          */
         @Override
         protected void onPreExecute() {
-
+            ShowLoading(true);
         }
 
-        /**
-         * Méthode exécutée ASYNChrone: la tâche en tant que telle.
-         *
-         * @param params Void. Aucun paramètre
-         * @return
-         */
+
         @Override
         protected ArrayList<Utilisateur> doInBackground(Void... params) {
             ArrayList<Utilisateur> listeUser = null;
@@ -240,9 +236,7 @@ public class LoginActivity extends AppCompatActivity {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setConnectTimeout(CONNECTION_TIMEOUT);
                 String body = readStream(httpURLConnection.getInputStream());
-
                 Log.i("TAG", "Reçu (GET) : " + body);
-
                 listeUser = JsonParser.deserializeUserArray(body);
 
             } catch (Exception e) {
@@ -255,18 +249,11 @@ public class LoginActivity extends AppCompatActivity {
             return listeUser;
         }
 
-        /**
-         * Méthode permettant de lire un InputStream
-         *
-         * @param in InputStream
-         * @return String une chaîne de caractères
-         */
         private String readStream(InputStream in) {
 
             StringBuilder sb = new StringBuilder();
 
             try {
-
                 //Lecture du flux de données
                 BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
 
@@ -277,29 +264,34 @@ public class LoginActivity extends AppCompatActivity {
             } catch (IOException e) {
                 mException = e;
             }
-
-
             return sb.toString();
         }
 
-
-        /**
-         * Méthode exécutée SYNChrone après l'exécution de la tâche asynchrone.
-         */
         @Override
         protected void onPostExecute(ArrayList<Utilisateur> users) {
 
+            ShowLoading(false);
 
             if (mException == null && users != null) {
-                Toast.makeText(LoginActivity.this, "Mauvais utilisateur/mot de passe.", Toast.LENGTH_LONG).show();
-
+                for (Utilisateur user : users) {
+                    Toast.makeText(LoginActivity.this, user.GetUsername(), Toast.LENGTH_LONG).show();
+                }
             } else {
-
                 Log.e("TAG", "Erreur lors de la récupération des utilisateurs (GET)", mException);
             }
         }
 
 
     }
+
+    // Show le spinner ou pas.
+    public void ShowLoading(boolean show){
+        ProgressBar pg = (ProgressBar) findViewById(R.id.progress);
+        if (show)
+            pg.setVisibility(View.VISIBLE);
+        else
+            pg.setVisibility(View.GONE);
+    }
+
 }
 

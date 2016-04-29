@@ -54,6 +54,12 @@ class User(ndb.Model):
 
 		return user_dict
 
+# Class Connexion Token
+class Token(ndb.Model):
+	key_user = ndb.KeyProperty(required=True)
+	b_valide = ndb.BooleanProperty(required=True)
+	urlsafe_key = ndb.StringProperty(required=True)
+
 # Classe Piste
 class Piste(ndb.Model):
 	# Requis
@@ -62,3 +68,20 @@ class Piste(ndb.Model):
 	int_actif = ndb.IntegerProperty(required=True)
 	key_ouvreur = ndb.KeyProperty(required=True)
 	# Faculatif
+	str_description = ndb.StringProperty(required=False)
+	str_datecreation = ndb.DateProperty(required=False)
+
+class Critique(ndb.Model):
+
+	# Requis
+	int_rating = ndb.KeyProperty(required=True)
+	key_user = ndb.KeyProperty(required=True)
+
+	# Facultatif
+	str_commentaire = ndb.KeyProperty(required=True)
+
+# Classe Demande
+class Demande(ndb.Model):
+
+	#Requis
+	str_ouvreur = ndb.KeyProperty(required=True)

@@ -5,12 +5,13 @@ import logging
 import traceback
 import datetime
 import json
+import time
 
 from google.appengine.ext import ndb
 from google.appengine.ext import db
 
 # Importation des modèles de données personnalisés.
-from models import User, Piste
+from models import User, Piste, Token
 
 
 # Modifier pre transformation en JSON
@@ -29,17 +30,20 @@ def serialiser_pour_json(objet):
         return objet
 
 
+# Methode qui permet d'aller chercher un user par username.
+def UserGetByUsername(username):
+	return User.query(User.str_username==username).get()
+
+
+def GetTimeInt():
+	return int(round(time.time() * 1000))
+
 class MainPageHandler(webapp2.RequestHandler):
 
     def get(self):
         self.response.headers['Content-Type'] = 'text/plain; charset=utf-8'
         self.response.out.write('Démo "Service Web REST avec' +
                                 'Google App Engine" en fonction !!!')
-
-
-# Methode qui permet d'aller chercher un user par username.
-def UserGetByUsername(username):
-	return User.query(User.str_username==username).get()
 
 
 class UserHandler(webapp2.RequestHandler):
@@ -121,7 +125,7 @@ class UserHandler(webapp2.RequestHandler):
 
 class UserAllHandler(webapp2.RequestHandler):
 
-	def get(self, username=None):
+	def get(self):
 
 		try:
 			users = User.query().fetch()
@@ -149,7 +153,97 @@ class UserAllHandler(webapp2.RequestHandler):
 		except Exception:
 			logging.error('%s', traceback.format_exc())
 			self.error(500)
-            
+
+# Handler pour la connexion.
+class ConnectHandler(webapp2.RequestHandler):
+
+	def get(self, username=None, password=None):
+
+		try:
+			if (username is not None) and (password is not None):
+
+				# Verification du user.
+				user = User.query(ndb.AND(User.str_username==username,User.str_password==password)).get()
+
+				if user is None:
+					self.error(404)
+					return
+
+				# Voir s'il y a deja un token, si oui, on le recréé.
+				token = Token.query(Token.key_user==user.key).get()
+
+				if token is not None:
+					token.key.delete()
+
+				token = Token(id=GetTimeInt(),
+					key_user=user.key,
+					b_valide=True)
+
+				token.urlsafe_key = token.key.urlsafe()
+
+				token.put()
+
+				self.response.headers['Content-Type'] = ('text/plain')
+				self.response.write(token.key.urlsafe())
+				self.response.set_status(200)
+
+		except (db.BadValueError, ValueError, KeyError):
+			logging.error('%s', traceback.format_exc())
+			self.error(400)
+
+		except Exception:
+			logging.error('%s', traceback.format_exc())
+			self.error(500)
+
+# Handler pour les tokens.
+class TokenHandler(webapp2.RequestHandler):
+
+	def get(self, url_token=None):
+
+		try:
+			if url_token is not None:
+
+				token = Token.query(Token.urlsafe_key==url_token).get()
+				logging.info()
+				if token is None:
+					self.error(404)
+					return
+
+				#Trouve, c'est OK
+				self.response.set_status(200)
+
+		except (db.BadValueError, ValueError, KeyError):
+			logging.error('%s', traceback.format_exc())
+			self.error(400)
+
+		except Exception:
+			logging.error('%s', traceback.format_exc())
+			self.error(500)
+
+	def delete(self, url_token=None):
+
+		try:
+			if url_token is not None:
+
+				token = Token.query(Token.urlsafe_key==url_token).get()
+				if token is None:
+					self.error(404)
+					return
+
+				# Delete ze Key
+				token.key.delete()
+				self.response.set_status(200)
+
+		except (db.BadValueError, ValueError, KeyError):
+			logging.error('%s', traceback.format_exc())
+			self.error(400)
+
+		except Exception:
+			logging.error('%s', traceback.format_exc())
+			self.error(500)
+
+
+# Routes :O
 app = webapp2.WSGIApplication(
     [
         webapp2.Route(r'/',
@@ -163,6 +257,12 @@ app = webapp2.WSGIApplication(
         			  methods=['POST']),
         webapp2.Route(r'/user/all',
         			  handler=UserAllHandler,
-        			  methods=['GET'])
+        			  methods=['GET']),
+        webapp2.Route(r'/connect/<username>/password/<password>',
+        			  handler=ConnectHandler,
+        			  methods=['GET']),
+        webapp2.Route(r'/token/<url_token>',
+        			  handler=TokenHandler,
+        			  methods=['GET','DELETE'])
     ],
     debug=True)
