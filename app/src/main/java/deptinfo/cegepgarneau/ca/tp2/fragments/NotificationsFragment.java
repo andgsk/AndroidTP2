@@ -35,7 +35,7 @@ public class NotificationsFragment extends ListFragment {
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_notifications);
 
-        this.setListAdapter(new ListeNotificationsAdapter(this.getContext(), R.layout.liste_item_notifications, R.id.txtPrenomNom, this.arrChoix));
+        this.setListAdapter(new ListeNotificationsAdapter(this.getContext(), R.layout.liste_item_notifications, R.id.txtNomPiste, this.arrChoix));
         return  view;
     }
 

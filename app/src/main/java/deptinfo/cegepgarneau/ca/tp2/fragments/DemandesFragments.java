@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.adapters.ListeDemandesAdapter;
-import deptinfo.cegepgarneau.ca.tp2.classes.Demande;
 
 /**
  * Created by Renaud-Charles on 22/02/2016.
@@ -32,7 +31,7 @@ public class DemandesFragments extends ListFragment {
         MainActivity mainActivity = (MainActivity)getActivity();
         mainActivity.mToolbar.setTitle(R.string.titre_demandes);
 
-        this.setListAdapter(new ListeDemandesAdapter(this.getContext(), R.layout.list_items_demandes, R.id.txtPrenomNom, ((MainActivity)getActivity()).GetDemandesActives()));
+        this.setListAdapter(new ListeDemandesAdapter(this.getContext(), R.layout.list_items_demandes, R.id.txtNomPiste, ((MainActivity)getActivity()).GetDemandesActives()));
         return  view;
     }
 

@@ -74,6 +74,20 @@ public class PisteDataSource {
         return piste;
     }
 
+    public Piste GetPisteByName(String name){
+        Piste p = null;
+        String[] args = new String[]{name};
+
+        Cursor c = m_db.query(TABLE_NAME, null, COL_NOM + "=?", args, null, null, null);
+
+        if (c.moveToFirst()){
+            p = CursorToPiste(c);
+        }
+
+        return p;
+    }
+
+
     // Permet de recuperer selon le type.
     public List<Piste> GetAllPistesType(int type){
         List<Piste> list = new ArrayList<Piste>();

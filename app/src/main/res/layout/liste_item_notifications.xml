@@ -30,7 +30,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_gravity="center_vertical"
                     android:text="@string/txt_nom_notification"
-                    android:id="@+id/txtPrenomNom"
+                    android:id="@+id/txtNomPiste"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/img_notification"
                     android:layout_toEndOf="@+id/img_notification"

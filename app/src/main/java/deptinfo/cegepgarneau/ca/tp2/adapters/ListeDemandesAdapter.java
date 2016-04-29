@@ -12,7 +12,6 @@ import java.util.List;
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
 import deptinfo.cegepgarneau.ca.tp2.classes.Demande;
-import deptinfo.cegepgarneau.ca.tp2.classes.Piste;
 import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 
 /**
@@ -33,12 +32,12 @@ import deptinfo.cegepgarneau.ca.tp2.fragments.ProfilFragment;
 
         View row = super.getView(position, convertView, parent);
 
-        row.findViewById(R.id.txtPrenomNom).setOnClickListener(new View.OnClickListener() {
+        row.findViewById(R.id.txtNomPiste).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (v instanceof TextView) {
-                    TextView txtNom = (TextView)v.findViewById(R.id.txtPrenomNom);
+                    TextView txtNom = (TextView)v.findViewById(R.id.txtNomPiste);
 
                     MainActivity activity = (MainActivity) context;
                     activity.OpenFragment(new ProfilFragment());

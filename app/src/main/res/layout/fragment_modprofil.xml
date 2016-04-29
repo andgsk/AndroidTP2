@@ -23,7 +23,7 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/txtNomMembre"
-                android:id="@+id/txtPrenomNom"
+                android:id="@+id/txtNomPiste"
                 android:layout_marginLeft="10dp" />
         </TableRow>
 

@@ -33,7 +33,7 @@ public class classVoieFragment extends ListFragment {
         //Création du fragment à partir du layout
         View v = inflater.inflate(R.layout.fragment_classvoie,container,false);
 
-        this.setListAdapter(new ListeClassementMembresAdapter(this.getContext(), R.layout.liste_item_membres, R.id.txtPrenomNom, this.arrChoix));
+        this.setListAdapter(new ListeClassementMembresAdapter(this.getContext(), R.layout.liste_item_membres, R.id.txtNomPiste, this.arrChoix));
         return v;
     }
 }
