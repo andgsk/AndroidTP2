@@ -204,7 +204,6 @@ class TokenHandler(webapp2.RequestHandler):
 			if url_token is not None:
 
 				token = Token.query(Token.urlsafe_key==url_token).get()
-				logging.info()
 				if token is None:
 					self.error(404)
 					return

@@ -90,22 +90,20 @@ public class LoginActivity extends AppCompatActivity {
         EditText loginView = (EditText) findViewById(R.id.login);
         EditText mdpView = (EditText) findViewById(R.id.mdp);
 
+        String username = loginView.getText().toString();
+        String mdp = mdpView.getText().toString();
+
         // Utilisateurs par defaut
         CreateDefaultUsers();
 
+        /* Old one.
         m_utilisateurDataSource.open();
-        m_user = m_utilisateurDataSource.GetUtilisateur(loginView.getText().toString(), mdpView.getText().toString());
-        Toast.makeText(this, loginView.getText().toString() + " : " + mdpView.getText().toString(), Toast.LENGTH_LONG).show();
+        m_user = m_utilisateurDataSource.GetUtilisateur(username, mdp);
         m_utilisateurDataSource.close();
+        */
 
-        if (m_user != null) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("Utilisateur", m_user);
-            this.finish(); // Plus besoin de cette activite.
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Mauvais utilisateur/mot de passe.", Toast.LENGTH_LONG).show();
-        }
+        String[] loginInfos = {username, mdp};
+        new ConnectUser().execute(loginInfos);
     }
 
     //Lorsque l'on clique inscription, on change de fragment.
@@ -213,29 +211,104 @@ public class LoginActivity extends AppCompatActivity {
         new GetAllUsers().execute((Void) null);
     }
 
+    // Fonction pour se connecter.
+    // Param1 = Username
+    // Param2 = Password
+    // Returns = Token Urlsafe KEY
+    private class ConnectUser extends AsyncTask<String, Void, String> {
+
+        Exception mException;
+
+        @Override
+        protected void onPreExecute(){
+            ShowLoading(true);
+        }
+
+        @Override
+        protected String doInBackground(String... strInfos) {
+            String strToken = "";
+            try {
+                URL url = new URL("http", ConnexionInfo.WEB_SERVICE_URL, ConnexionInfo.PORT, "/connect/" + strInfos[0] + "/password/" + strInfos[1]);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setConnectTimeout(CONNECTION_TIMEOUT);
+                strToken = ConnexionInfo.readStream(httpURLConnection.getInputStream());
+                Log.i("TAG", "Body: " + strToken);
+            } catch (Exception e) {
+                mException = e;
+            } finally {
+                if (mHttpURLConnection != null) {
+                    mHttpURLConnection.disconnect();
+                }
+            }
+            return strToken;
+        }
+
+        @Override
+        protected void onPostExecute(String strToken){
+            ShowLoading(false);
+            if (mException == null && strToken != null) {
+                Toast.makeText(LoginActivity.this, strToken, Toast.LENGTH_LONG).show();
+            } else {
+                Log.e("TAG", "Erreur lors de la connexion (GET)", mException);
+            }
+        }
+
+    }
+
+    private class VerifyToken extends AsyncTask<String, Void, Boolean> {
+
+        Exception mException;
+
+        @Override
+        protected void onPreExecute(){
+            ShowLoading(true);
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strToken) {
+            int response = 0;
+            try {
+                URL url = new URL("http", ConnexionInfo.WEB_SERVICE_URL, ConnexionInfo.PORT, "/verify/" + strToken);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setConnectTimeout(CONNECTION_TIMEOUT);
+                response = httpURLConnection.getResponseCode();
+                Log.i("TAG", "Code: " + response);
+            } catch (Exception e) {
+                mException = e;
+            } finally {
+                if (mHttpURLConnection != null) {
+                    mHttpURLConnection.disconnect();
+                }
+            }
+            return (response == 200);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean verified){
+            ShowLoading(false);
+        }
+
+    }
+
+    // Fonction get fetch tout les users.
     private class GetAllUsers extends AsyncTask<Void, Void, ArrayList<Utilisateur>> {
 
         Exception mException;
 
-        /**
-         * Méthode exécutée SYNChrone avant l'exécution de la tâche asynchrone.
-         */
         @Override
         protected void onPreExecute() {
             ShowLoading(true);
         }
-
 
         @Override
         protected ArrayList<Utilisateur> doInBackground(Void... params) {
             ArrayList<Utilisateur> listeUser = null;
 
             try {
-
                 URL url = new URL("http", ConnexionInfo.WEB_SERVICE_URL, ConnexionInfo.PORT, "/user/all");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setConnectTimeout(CONNECTION_TIMEOUT);
-                String body = readStream(httpURLConnection.getInputStream());
+                String body = ConnexionInfo.readStream(httpURLConnection.getInputStream());
                 Log.i("TAG", "Reçu (GET) : " + body);
                 listeUser = JsonParser.deserializeUserArray(body);
 
@@ -247,24 +320,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
             return listeUser;
-        }
-
-        private String readStream(InputStream in) {
-
-            StringBuilder sb = new StringBuilder();
-
-            try {
-                //Lecture du flux de données
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-
-                String nextLine = "";
-                while ((nextLine = reader.readLine()) != null) {
-                    sb.append(nextLine);
-                }
-            } catch (IOException e) {
-                mException = e;
-            }
-            return sb.toString();
         }
 
         @Override
@@ -280,8 +335,6 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e("TAG", "Erreur lors de la récupération des utilisateurs (GET)", mException);
             }
         }
-
-
     }
 
     // Show le spinner ou pas.
