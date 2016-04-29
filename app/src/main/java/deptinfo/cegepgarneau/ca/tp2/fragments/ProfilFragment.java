@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import deptinfo.cegepgarneau.ca.tp2.R;
 import deptinfo.cegepgarneau.ca.tp2.activities.MainActivity;
@@ -56,7 +55,7 @@ public class ProfilFragment extends Fragment {
 
     // Rempli les infos d'un user.
     public void RemplirInfoUtilisateur(View view, Utilisateur user){
-        TextView txtPrenomNom = (TextView) view.findViewById(R.id.txtPrenomNom);
+        TextView txtPrenomNom = (TextView) view.findViewById(R.id.txtNomPiste);
         TextView txtAdresse = (TextView) view.findViewById(R.id.txtAdresse);
         TextView txtEmail = (TextView) view.findViewById(R.id.txtEmail);
         TextView txtNoTelephone = (TextView) view.findViewById(R.id.txtNoTelephone);
