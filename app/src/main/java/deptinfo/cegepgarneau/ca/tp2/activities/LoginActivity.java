@@ -104,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String[] loginInfos = {username, mdp};
         new ConnectUser().execute(loginInfos);
+        new VerifyToken().execute(ConnexionInfo.GetAuthToken(this));
     }
 
     //Lorsque l'on clique inscription, on change de fragment.
@@ -247,7 +248,8 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String strToken){
             ShowLoading(false);
             if (mException == null && strToken != null) {
-                Toast.makeText(LoginActivity.this, strToken, Toast.LENGTH_LONG).show();
+                ConnexionInfo.SetAuthToken(strToken, LoginActivity.this);
+                Toast.makeText(LoginActivity.this, ConnexionInfo.GetAuthToken(LoginActivity.this), Toast.LENGTH_LONG).show();
             } else {
                 Log.e("TAG", "Erreur lors de la connexion (GET)", mException);
             }
@@ -268,7 +270,8 @@ public class LoginActivity extends AppCompatActivity {
         protected Boolean doInBackground(String... strToken) {
             int response = 0;
             try {
-                URL url = new URL("http", ConnexionInfo.WEB_SERVICE_URL, ConnexionInfo.PORT, "/verify/" + strToken);
+                Log.i("TAG", "Token: " + strToken[0]);
+                URL url = new URL("http", ConnexionInfo.WEB_SERVICE_URL, ConnexionInfo.PORT, "/token/" + strToken[0]);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setConnectTimeout(CONNECTION_TIMEOUT);
                 response = httpURLConnection.getResponseCode();
@@ -286,6 +289,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean verified){
             ShowLoading(false);
+            Toast.makeText(LoginActivity.this, "VERIFIER: " + verified, Toast.LENGTH_LONG).show();
         }
 
     }
@@ -329,7 +333,7 @@ public class LoginActivity extends AppCompatActivity {
 
             if (mException == null && users != null) {
                 for (Utilisateur user : users) {
-                    Toast.makeText(LoginActivity.this, user.GetUsername(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LoginActivity.this, user.GetUsername(), Toast.LENGTH_LONG).show();
                 }
             } else {
                 Log.e("TAG", "Erreur lors de la récupération des utilisateurs (GET)", mException);

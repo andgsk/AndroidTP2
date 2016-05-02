@@ -241,6 +241,82 @@ class TokenHandler(webapp2.RequestHandler):
 			logging.error('%s', traceback.format_exc())
 			self.error(500)
 
+class PisteHandler(webapp2.RequestHandler):
+
+	def post(self):
+
+		try:
+			json_piste = json.loads(self.request.body)
+			
+			# S'il y a effectivement du json, on transform en objet utilisateur.
+			if json_piste:
+				user = UserGetByUsername(json_user['str_username'])
+				
+				#S'il n'y a pas de user, on en cree un.
+				if not user:
+					user = User()
+					user.UpdateFromJSON(json_user, True)
+					user.put()
+
+				#On update les infos de l'utilisateur
+				else:
+					user.UpdateFromJSON(json_user)
+					logging.info(user)
+
+		# Erreurs lie au donnees JSON
+		except (db.BadValueError, ValueError, KeyError):
+			logging.error('%s', traceback.format_exc())
+			self.error(400)
+
+	def get(self, pisteid=None):
+
+		try:
+			if pisteid is not None:
+
+				# Fetch d'un user.
+				piste = Piste.key()
+
+				# User non trouvé
+				if (pisteid is None):
+					self.error(404)
+					return
+
+				# Retourne le JSON data sans le mdp.
+				json_data = json.dumps(user.GetJSON(), default=serialiser_pour_json)
+
+			self.response.set_status(200)
+			self.response.headers['Content-Type'] = ('application/json;' +
+													' charset=utf-8')
+			self.response.out.write(json_data)
+
+		except (db.BadValueError, ValueError, KeyError):
+			logging.error('%s', traceback.format_exc())
+			self.error(400)
+
+		except Exception:
+			logging.error('%s', traceback.format_exc())
+			self.error(500)
+
+	def delete(self, username):
+
+		try:
+			if username is not None:
+
+				user = UserGetByUsername(username)
+
+				if user is not None:	
+					key = user.key
+					key.delete()
+					
+			self.response.set_status(204)
+
+		except (db.BadValueError, ValueError, KeyError):
+			logging.error('%s', traceback.format_exc())
+			self.error(400)
+
+		except Exception:
+			logging.error('%s', traceback.format_exc())
+			self.error(500)
 
 # Routes :O
 app = webapp2.WSGIApplication(

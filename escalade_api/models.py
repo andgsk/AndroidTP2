@@ -71,6 +71,24 @@ class Piste(ndb.Model):
 	str_description = ndb.StringProperty(required=False)
 	str_datecreation = ndb.DateProperty(required=False)
 
+	# Methode qui cree un utilisateur a partir du JSON.
+	def UpdateFromJSON(self, json_data, update_requis=False):
+		
+		if 'str_nom' in json_data:
+			self.str_nom = json_data['str_nom']
+		if 'int_type' in json_data:
+			self.int_type = json_data['int_type']
+		if 'int_actif' in json_data:
+			self.int_actif = int(json_data['int_actif'])
+		if 'key_ouvreur' in json_data:
+			self.key_ouvreur = json_data['key_ouvreur']
+		if 'str_description' in json_data:
+			self.str_description = json_data['str_description']
+		if 'str_datecreation' in json_data:
+			self.str_datecreation = json_data['str_datecreation']
+			
+		return self
+
 class Critique(ndb.Model):
 
 	# Requis

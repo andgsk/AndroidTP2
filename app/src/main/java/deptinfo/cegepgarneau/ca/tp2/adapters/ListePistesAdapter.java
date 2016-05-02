@@ -59,10 +59,6 @@ public class ListePistesAdapter extends ArrayAdapter<Piste>{
                 m_pisteDb.close();
 
                 Toast.makeText(context,"Selection de " + piste.GetID() + " : " + piste.GetNom(),Toast.LENGTH_LONG).show();
-               //ça plante!
-                //((EditText)v.findViewById(R.id.txtNomPiste)).setText(s);
-               // ((EditText)v.findViewById(R.id.txtDiffPiste)).setText(piste.GetDifficulte());
-
 
             }
         });
